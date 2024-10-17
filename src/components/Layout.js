@@ -72,6 +72,7 @@ const [userLoggedIn, setUserLoggedIn] = useState();
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [userId, setUserId] = useState(null);
 const [passwordVisible, setPasswordVisibility] = useState(false)
+const [registerPressed, setRegisterPressed] = useState(false)
 
 const handleClose = () => setShow(false); 
 const handleShow = () => setShow(true);
@@ -168,6 +169,14 @@ const userInfo = {
   userId,
 };
 
+const handleRegisterClicked = () => {
+  setRegisterPressed(true);
+}
+
+const handleLogInClicked = () => {
+  setRegisterPressed(false);
+}
+
 // const location = useLocation();
 //   //access user data passed via state
 //   const { user } = location.state || {};
@@ -175,8 +184,8 @@ const userInfo = {
     return(
       <>
       {/* link makes pop up work but changes some layout, uncomment with caution */}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
+      {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link> */}
       {/* pop up when registering/loging in */}
       <Modal show={show} onHide={handleClose} className="modalContainer">
         <div className="modalContent">
@@ -185,28 +194,35 @@ const userInfo = {
             <button onClick={handleClose} id="xButton">&times;</button>
           </div>
           <div className="modalBody">
-            <label>Username:</label>
-            <input value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />
+            <label className="modalText">Username:</label>
+            <input className="modalInput" value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />
           </div>
           <div className="modalBody">
-            <label>Password:</label>
-            <input type="password" id="pwInput" value={password} onChange={handlePasswordChange} placeholder="1 Caps, 1 Number, 1 Symbol, minimum 10 characters." />
+            <label className="modalText">Password:</label>
+            <input className="modalInput" type="password" id="pwInput" value={password} onChange={handlePasswordChange} placeholder="1 Caps, 1 Number, 1 Symbol, minimum 10 characters." />
             {passwordVisible ? (
               <>
-                <img id="eyeVisible" onClick={handlePasswordVisibility} src="eye-icon.png" alt="Show" />
-                <button className="showPWButton" onClick={handlePasswordVisibility}>Hide Password</button>
+                <img id="eyeVisible" onClick={handlePasswordVisibility} src="https://github.com/macshire/Mini-Project-P2/blob/main/eye-visible.png?raw=true" alt="Show" />
+                {/* <button className="showPWButton" onClick={handlePasswordVisibility}>Hide Password</button> */}
               </>
             ) : (
               <>
-                <img id="eyeInvisible" onClick={handlePasswordVisibility} src="eye-off-icon.png" alt="Hide" />
-                <button className="showPWButton" onClick={handlePasswordVisibility}>Show Password</button>
+                <img id="eyeInvisible" onClick={handlePasswordVisibility} src="https://github.com/macshire/Mini-Project-P2/blob/main/eye-invisible.png?raw=true" alt="Hide" />
+                {/* <button className="showPWButton" onClick={handlePasswordVisibility}>Show Password</button> */}
               </>
             )}
           </div>
           <div className="modalFooter">
             <button className="button" onClick={handleClose}>Close</button>
-            <button className="button" onClick={handleCreateAccount}>Create Account</button>
-            <button className="button" onClick={handleLoginAccount}>Log In</button>
+            {registerPressed? (
+              <>
+                <button className="button" onClick={handleCreateAccount}>Create Account</button>
+              </>
+            ) : (
+              <>
+                <button className="button" onClick={handleLoginAccount}>Log In</button>
+              </>
+            )}
           </div>
         </div>
       </Modal>
@@ -230,8 +246,8 @@ const userInfo = {
                 ) : 
                 (
                 <>
-                  <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); }}>Register</button>
-                  <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); }}>Log In</button>
+                  <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); handleRegisterClicked();}}>Register</button>
+                  <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); handleLogInClicked();}}>Log In</button>
                 </>
                 )}
                 </div>

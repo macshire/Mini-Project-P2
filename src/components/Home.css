@@ -117,7 +117,7 @@
 li a:is(:link, :active, :visited) {
   /* have the image float toward the left */
   float: left;
-  color: rgb(235, 210, 173);
+  color: rgb(212, 175, 106);
   text-align: center;
   padding: 1vw 2vw;
   /* remove underlines */
@@ -132,7 +132,7 @@ li a:is(:link, :active, :visited) {
 /* changes color of box if hovering */
 li a:hover{
   background-color: #2b2b2b91;
-  color: rgb(244, 224, 247);
+  color: rgb(255, 255, 255);
 }
 
 /* changes color of box if active */
@@ -237,14 +237,14 @@ body {
 }
 
 .homePageContainer {
-  width: 20.3vw;
-  height: 40vw;
+  width: 19.6vw;
+  height: 38.2vw;
   color: white;
   border: solid;
   border-color: rgb(114, 83, 54);
   border-width: 0.4vw;
   align-items: center;
-  margin-left: 3vw;
+  margin-left: 2.8vw;
   margin-right: 1vw;
   margin-top: 2vw;
   margin-bottom: 2vw;
@@ -285,14 +285,14 @@ body {
   border-color: rgb(20, 65, 42);
   border-width: 0.4vw;
   background-color: rgb(27, 88, 58);
+  height: 10vw;
 }
 
 .headerText {
   font-size: 8vw;
+  margin-top: 0.5vw;
   font-family: "Bebas Neue", sans-serif;
-  margin-top: -1vw;
   margin-left: -8vw;
-  margin-bottom: -1vw;
   color:  rgb(212, 175, 106);
   display: inline-block;
 } 
@@ -311,7 +311,7 @@ body {
 #dropDownLabel {
   font-family: "Bebas Neue", sans-serif;
   font-size: 3vw;
-  color:  rgb(235, 210, 173);
+  color: rgb(212, 175, 106);
 }
 
 .dropDownSelected {
@@ -349,14 +349,14 @@ body {
 }
 
 .navButtons {
-  width: 8vw;
-  height: 3vw;
+  width: 7vw;
+  height: 2.4vw;
   display: inline-block;
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   border-radius: 4px;
   margin-right: 0.8vw;
-  background-color: rgb(244, 224, 247);
-  transform: translateX(11.6vw);
+  background-color: rgb(255, 255, 255);
+  transform: translateX(13.4vw);
 }
 
 .navButtons :hover {
@@ -375,7 +375,8 @@ body {
   z-index: 1000;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  /* black overlay */
+  background-color: rgba(0, 0, 0, 0.6); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -385,23 +386,34 @@ body {
 }
 
 .modalContent {
-  background-color: white;
+  /* background-color: rgb(20, 65, 42); */
+  background-color: rgb(212, 175, 106);
   border-radius: 10px;
   padding: 2rem;
   width: 50vw;
   max-width: 600px;
   display: flex;
   flex-direction: column;
+  border: solid;
+  border-color: rgb(114, 83, 54);
+  border-width: 0.4vw;
+  align-self: center;
+  transform: translate(90.4%, 30%);
 }
 
 .modalHeader {
-  font-size: 1.5rem;
+  font-size: 2vw;
   font-weight: bold;
   margin-bottom: 1rem;
+  color: rgb(0, 0, 0);
 }
 
 .modalBody {
   margin-bottom: 1rem;
+}
+
+.inputBar {
+  border-color: #0056b3;
 }
 
 .modalFooter {
@@ -411,20 +423,35 @@ body {
 
 #xButton {
   margin-left: 20vw;
+  width: 2vw;
+  height: 2vw;
+}
+
+.modalText {
+  color: rgb(0, 0, 0);
+  font-size: 1.2vw;
+}
+
+.modalInput {
+  width: 20vw;
+  height: 1.5vw;
+  font-size: 0.8vw;
 }
 
 .button {
   padding: 0.5rem 1rem;
   margin-left: 1rem;
   border: none;
-  background-color: #007bff;
+  background-color: rgb(25, 82, 52);
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  height: 2.4vw;
+  font-size: 1vw;
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: rgb(20, 65, 42);
 }
 
 .showPWButton {
@@ -435,10 +462,10 @@ body {
 }
 
 #eyeVisible, #eyeInvisible {
-  width: 20px;
-  height: 20px;
+  width: 2vw;
+  height: 2vw;
   cursor: pointer;
-  margin-right: 5px;
+  transform: translateY(0.7vw);
 }
 
 #noSearch {
@@ -446,17 +473,15 @@ body {
   font-family: "Bebas Neue", sans-serif;
 }
 
-.eyeVisible {
-  width: 1vw;
-  height: 1vw;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRELz1YazfugZdxzltruoSStAGChatrUSZnGw&s');
+/* #eyeVisible {
+  width: 2vw;
+  height: 2vw;
 }
 
-.eyeInvisible {
-  width: 1vw;
-  height: 1vw;
-  src: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F22782488-hidden-icon-visible-invisible-icon-eye-icon-look-and-vision-hide-unhide-symbol-human-eye-magic-eye-cross-symbol-sencitive-content-see-unsee-incognito-mood-blind-sign&psig=AOvVaw087VtgnSVTyuuQ-E8CjwWm&ust=1727831973699000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjYh_CB7IgDFQAAAAAdAAAAABAJ');
-}
+#eyeInvisible {
+  width: 2vw;
+  height: 2vw;
+} */
 
 #showPWButton {
   width: 10vw;
