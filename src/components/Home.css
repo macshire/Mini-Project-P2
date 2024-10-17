@@ -268,11 +268,18 @@ body {
   margin-left: 0.5vw;
 }
 
-.headerBorder {
+/* .headerBorder {
   border: solid;
   border-color: rgb(212, 95, 91);
   border-width: 0.4vw;
   background-color: rgb(141, 56, 53);
+} */
+
+.headerBorder {
+  border: solid;
+  border-color: rgb(20, 65, 42);
+  border-width: 0.4vw;
+  background-color: rgb(27, 88, 58);
 }
 
 .headerText {
