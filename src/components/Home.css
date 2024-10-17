@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+/* profile picture image */
+#avatar {
+  background-image: url('https://media.licdn.com/dms/image/v2/D5603AQGeO3YQqKB3qQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1673597707200?e=2147483647&v=beta&t=sh_InJkdqhLw0R5cpjcE-mJugMDxI4nWD_aNbB1mEZ0');
+  background-size: cover;
+  width: 40vw;
+  height: 40vw;
+  display: block;
+  border-radius: 50%;
+  margin-left: 4vw;
+  margin-top: 3vw;
+}
+
+/* background blender image */
+#titleBackground {
+  z-index: -10;
+  height: 28vw;
+  background-image: url('https://media.licdn.com/dms/image/v2/D4D16AQF9Khhlg2kEtw/profile-displaybackgroundimage-shrink_200_800/profile-displaybackgroundimage-shrink_200_800/0/1715758260542?e=2147483647&v=beta&t=HzXxUo-U8g-e4oBHRNRZyqsGEG1uLf1x3gc_CT_g1HQ');
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  /* black tint to background */
+  background-color: rgba(59, 54, 48, 0.829);
+  background-blend-mode: multiply;
+}
+
+/* big name at the top */
+#titleName {
+  position: absolute;
+  font-size: 5vw;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  left: 50%;
+  color: rgb(212, 175, 106);
+  transform: translate(-50%, -50%);
+  /* keep font consistent */
+  white-space: nowrap;
+}
+
+/* short desc below titleName */
+#titleWords {
+  position: absolute;
+  font-size: 2vw;
+  margin: 0;
+  padding: 0;
+  top: 75%;
+  left: 50%;
+  color:rgb(212, 175, 106);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+/* short paragraph */
+#desciption {
+  position: absolute;
+  font-size: 2vw;
+  margin-left: 48vw;
+  margin-top: 0vw;
+  color: rgb(216, 216, 216);
+  font-family: 'Cinzel', serif;
+  white-space: nowrap;
+}
+
+/* top nav bar */
+#topNav {
+  background-color: burlywood;
+  overflow: hidden;
+}
+
+/* setting look for text within the top nav */
+/*main class for looks */
+li a:is(:link, :active, :visited) {
+  /* have the image float toward the left */
+  float: left;
+  color: rgb(235, 210, 173);
+  text-align: center;
+  padding: 1vw 2vw;
+  /* remove underlines */
+  text-decoration: none;
+  font-size: 2.1vw;
+  background-color: rgba(59, 54, 48, 0.199);
+  background-blend-mode: multiply;
+  transform: translateX(-0.5vw);
+}
+
+/* changes color of box if hovering */
+li a:hover{
+  background-color: #2b2b2b91;
+  color: rgb(244, 224, 247);
+}
+
+/* changes color of box if active */
+a:is(:link, :active, :visited){
+  background-color: rgba(138, 114, 82, 0);
+  color: white;
+}
+
+.tabContent {
+  display: none;
+  height: 100%;
+}
+
+.navHeight {
+  height: 0;
+}
+
+.inputBar {
+  border-radius: 15px;
+  transform: translate(56vw, 1vw);
+  height: 2.5vw;
+  width: 20vw;
+}
+
+#avatar2 {
+  background-image: url('https://oa.tp.libnova.com/templates/temasek/assets/img/slider_2.webp');
+  background-size: cover;
+  width: 40vw;
+  height: 40vw;
+  display: block;
+  border-radius: 50%;
+  margin-left: 55vw;
+  margin-top: 3vw;
+}
+
+#desciption2 {
+  position: absolute;
+  font-size: 2vw;
+  margin-left: 3vw;
+  margin-top: 0vw;
+  color: rgb(216, 216, 216);
+  font-family: 'Cinzel', serif;
+  white-space: nowrap;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(43, 75, 57);
+}
+
+.nav-flex-container {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+#avatar3 {
+  background-image: url('https://i0.wp.com/touristjourney.com/wp-content/uploads/2020/11/Ho-Chi-Minh-City.jpg?fit=2500%2C1666&ssl=1');
+  background-size: cover;
+  width: 40vw;
+  height: 40vw;
+  display: block;
+  border-radius: 50%;
+  margin-left: 4vw;
+  margin-top: 3vw;
+}
+
+body {
+  background-color: rgb(43, 75, 57);
+}
+
+/* profile picture image top left */
+#avatarLeft {
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRELz1YazfugZdxzltruoSStAGChatrUSZnGw&s');
+  transform: translateX(0.5vw);
+  background-size: cover;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.red {
+  color: red;
+}
+
+.bookImage {
+  width: 18vw;
+  height: 30vw;
+  align-items: center;
+  border-radius: 4%;
+  margin-left: -1vw;
+  margin-top: 0.5vw;
+  transform: translate(10%,0%);
+}
+
+.homePageContainer {
+  width: 20.3vw;
+  height: 40vw;
+  color: white;
+  border: solid;
+  border-color: rgb(114, 83, 54);
+  border-width: 0.4vw;
+  align-items: center;
+  margin-left: 3vw;
+  margin-right: 1vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  display: inline-block;
+  border-radius: 4%;
+  background-color: rgb(212, 175, 106);
+  transition: all .1s ease-in-out;
+  cursor: pointer;
+}
+
+.homePageContainer:hover {
+  transform: scale(1.1);
+}
+
+.homePageTitles {
+  font-size: 1.5vw;
+  align-self: center;
+  color: black;
+  margin-left: 0.5vw;
+}
+
+.homePageText {
+  font-size: 1.1vw;
+  align-items: center;
+  color: black;
+  margin-left: 0.5vw;
+}
+
+.headerBorder {
+  border: solid;
+  border-color: rgb(212, 95, 91);
+  border-width: 0.4vw;
+  background-color: rgb(141, 56, 53);
+}
+
+.headerText {
+  font-size: 8vw;
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: -1vw;
+  margin-left: -8vw;
+  margin-bottom: -1vw;
+  color:  rgb(212, 175, 106);
+  display: inline-block;
+} 
+
+.navHeight {
+  list-style-type: none;
+}
+
+.dropDownContainer {
+  width: 10vw; 
+  height: auto;
+  transform: translate(850%); 
+  display: inline-block;
+}
+
+#dropDownLabel {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3vw;
+  color:  rgb(235, 210, 173);
+}
+
+.dropDownSelected {
+  width: 8vw;
+  color:  rgb(216, 216, 216);
+}
+
+#searchBar {
+  width: 24vw;
+  height: 3vw;
+  margin-left: 34vw;
+  transform: translateY(-4.0vw);
+  font-size: 1.4vw;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+#bookMark {
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-left: 15vw;
+  transform: translateX(-2.2vw) translateY(0.9vw);
+  font-size: 1.2vw;
+  border-radius: 100%;
+  position: absolute;
+}
+
+#bookMark:hover {
+  background-color: rgb(229, 182, 236);
+  cursor: pointer;
+}
+
+.navButtonContainer {
+  transform: translateX(42vw);
+}
+
+.navButtons {
+  width: 8vw;
+  height: 3vw;
+  display: inline-block;
+  font-size: 1.5vw;
+  border-radius: 4px;
+  margin-right: 0.8vw;
+  background-color: rgb(244, 224, 247);
+}
+
+.navButtons :hover {
+  background-color: rgba(59, 54, 48, 0.199);
+}
+
+#clearButton {
+  width: 14vw;
+  height: 3vw;
+  font-size: 1.05vw;
+  transform: translateX(45vw) translateY(-2vw);
+  border-radius: 4px;
+}
+
+.modalContainer {
+  z-index: 1;
+  width: 100vw;
+  background-clip: padding-box;
+  background-color: var(--bs-modal-bg);
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  color: var(--bs-modal-color);
+  display: flex;
+  flex-direction: column;
+  outline: 0;
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--bs-modal-width);
+  align-items: center;
+}
+
+#noSearch {
+  font-size: 14vw;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+.eyeVisible {
+  width: 1vw;
+  height: 1vw;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRELz1YazfugZdxzltruoSStAGChatrUSZnGw&s');
+}
+
+.eyeInvisible {
+  width: 1vw;
+  height: 1vw;
+  src: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F22782488-hidden-icon-visible-invisible-icon-eye-icon-look-and-vision-hide-unhide-symbol-human-eye-magic-eye-cross-symbol-sencitive-content-see-unsee-incognito-mood-blind-sign&psig=AOvVaw087VtgnSVTyuuQ-E8CjwWm&ust=1727831973699000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLjYh_CB7IgDFQAAAAAdAAAAABAJ');
+}
+
+#showPWButton {
+  width: 10vw;
+}
+
+.pfpPlaceHolder {
+  border-radius: 50%;        
+  width: 4vw;                
+  height: 4vw;               
+  border-style: none;        
+  vertical-align: middle;   
+  /*ensure the image covers the container while maintaining aspect ratio */
+  object-fit: cover;          
+  overflow: hidden;         
+  display: flex;   
+  /*center the image horizontally */
+  justify-content: center;    
+  /*center the image vertically */
+  align-items: center;        
+}
+
+.linkPFP {
+  border-radius: 50%;
+  width: 4vw;
+  height: 4vw;
+  transform: translateY(-1vw);
+}
+
+.profileName {
+  color: rgb(235, 210, 173);
+  font-size: 1.5vw;
+}

@@ -1,0 +1,107 @@
+.headerTextProfile {
+    font-size: 8vw;
+    font-family: "Bebas Neue", sans-serif;
+    margin-top: -1vw;
+    margin-left: 2vw;
+    margin-bottom: -1vw;
+    color:  rgb(212, 175, 106);
+    display: inline-block;
+  } 
+
+/* big name at the top */
+#titleNameProfile {
+  position: absolute;
+  font-size: 7vw;
+  margin: 0;
+  padding: 0;
+  top: 50%;
+  left: 35%;
+  color: rgb(212, 175, 106);
+  transform: translate(-50%, -50%);
+  /* keep font consistent */
+  white-space: nowrap;
+}
+
+/* short desc below titleName */
+#titleWordsProfile {
+  position: absolute;
+  font-size: 2.5vw;
+  margin: 0;
+  padding: 0;
+  top: 75%;
+  left: 51%;
+  color:rgb(212, 175, 106);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.imageContainer {
+  width: 20vw;
+  height: 20vw;
+  display: block;
+  border-radius: 50%; /* For circular profile picture */
+  margin-left: 2vw;
+  padding-top: 0vw;
+  transform: translateY(6vw);
+  object-fit: cover; /* Ensures the image fits within the circle */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease, z-index 0.3s ease; /* Smooth transition */
+}
+
+.imageContainer:hover .profileImage {
+  opacity: 0.7; /* Reduces opacity on hover to show background color */
+  z-index: -1; /* Ensure the background color appears above the image */
+}
+
+.imageContainer:hover {
+  background-color: rgba(59, 54, 48, 0.199);
+}
+
+
+.ReviewDisplay{
+  color: black;
+  font-size: 2vw;
+  width: 2vw;
+}
+
+.profreview-container {
+  width: 30vw;
+  height: 47vw;
+  color: white;
+  border: solid;
+  border-color: rgb(114, 83, 54);
+  border-width: 0.4vw;
+  /* align-items: center; */
+  margin-left: 2vw;
+  /* margin-right: 50%; */
+  margin-top: 3vw;
+  display: inline-block;
+  border-radius: 4%;
+  background-color: rgb(212, 175, 106);
+  transition: all .1s ease-in-out;
+  cursor: pointer;
+  margin-bottom: 2vw;
+
+}
+/* .review-container:hover {
+  transform: scale(1.1);
+} */
+
+#logOutButton {
+  transform: translateX(40vw);
+  width: 10vw;
+  height: 4vw;
+  font-size: 2vw;
+  border-radius: 10px;
+}
+
+#logOutButton:hover {
+  background-color: rgb(185, 183, 183);
+}
