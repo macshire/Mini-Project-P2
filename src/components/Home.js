@@ -175,10 +175,10 @@ const Home = ({ stories }) => {
       <div id="profile">
         <div id="titleBackground">
           <div id="titleName">
-            <p>Le Book Navigator</p>
+            <p>Sách sâu</p>
           </div>
           <div id="titleWords">
-            <p>Welcome to our website</p>
+            <p>Create your own library</p>
           </div>
         </div>
         <div className="headerBorder">

@@ -67,7 +67,7 @@
 /* big name at the top */
 #titleName {
   position: absolute;
-  font-size: 5vw;
+  font-size: 9vw;
   margin: 0;
   padding: 0;
   top: 50%;
@@ -76,12 +76,15 @@
   transform: translate(-50%, -50%);
   /* keep font consistent */
   white-space: nowrap;
+  font-family: "Bebas Neue", sans-serif;
+  text-decoration: underline;
+  text-shadow: black;
 }
 
 /* short desc below titleName */
 #titleWords {
   position: absolute;
-  font-size: 2vw;
+  font-size: 2.5vw;
   margin: 0;
   padding: 0;
   top: 75%;
@@ -89,6 +92,7 @@
   color:rgb(212, 175, 106);
   transform: translate(-50%, -50%);
   white-space: nowrap;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 /* short paragraph */
@@ -118,10 +122,11 @@ li a:is(:link, :active, :visited) {
   padding: 1vw 2vw;
   /* remove underlines */
   text-decoration: none;
-  font-size: 2.1vw;
+  font-size: 1.7vw;
   background-color: rgba(59, 54, 48, 0.199);
   background-blend-mode: multiply;
   transform: translateX(-0.5vw);
+  font-family: "Bebas Neue", sans-serif;
 }
 
 /* changes color of box if hovering */
@@ -351,6 +356,7 @@ body {
   border-radius: 4px;
   margin-right: 0.8vw;
   background-color: rgb(244, 224, 247);
+  transform: translateX(11.6vw);
 }
 
 .navButtons :hover {
