@@ -178,39 +178,38 @@ const userInfo = {
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link>
       {/* pop up when registering/loging in */}
-        <Modal show={show} onHide={handleClose} className="modalContainer">
-          <Modal.Header closeButton>
-            <Modal.Title>Register</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Username:</Modal.Body>
-          <input value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others."></input>
-          <Modal.Body>Password:</Modal.Body>
-            <input type="password" id="pwInput" value={password} onChange={handlePasswordChange} placeholder="1 Caps, 1 Number, 1 Symbol, minimum 10 characters."></input>
-            {/* conditional rendering based on password visibility */}
-            {passwordVisible? (
+      <Modal show={show} onHide={handleClose} className="modalContainer">
+        <div className="modalContent">
+          <div className="modalHeader">
+            Register
+            <button onClick={handleClose} id="xButton">&times;</button>
+          </div>
+          <div className="modalBody">
+            <label>Username:</label>
+            <input value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />
+          </div>
+          <div className="modalBody">
+            <label>Password:</label>
+            <input type="password" id="pwInput" value={password} onChange={handlePasswordChange} placeholder="1 Caps, 1 Number, 1 Symbol, minimum 10 characters." />
+            {passwordVisible ? (
               <>
-              <image id="eyeVisible" onClick={handlePasswordVisibility}></image>
-              <Button className="showPWButton" onClick={handlePasswordVisibility}>Hide Password</Button>
+                <img id="eyeVisible" onClick={handlePasswordVisibility} src="eye-icon.png" alt="Show" />
+                <button className="showPWButton" onClick={handlePasswordVisibility}>Hide Password</button>
               </>
-            ) :
-            (
+            ) : (
               <>
-              <image id="eyeInvisible" onClick={handlePasswordVisibility}></image>
-              <Button className="showPWButton" onClick={handlePasswordVisibility}>Show Password</Button>
+                <img id="eyeInvisible" onClick={handlePasswordVisibility} src="eye-off-icon.png" alt="Hide" />
+                <button className="showPWButton" onClick={handlePasswordVisibility}>Show Password</button>
               </>
             )}
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleCreateAccount}>
-              Create Account
-            </Button>
-            <Button variant="primary" onClick={handleLoginAccount}>
-              Log In
-          </Button>
-          </Modal.Footer>
-        </Modal>
+          </div>
+          <div className="modalFooter">
+            <button className="button" onClick={handleClose}>Close</button>
+            <button className="button" onClick={handleCreateAccount}>Create Account</button>
+            <button className="button" onClick={handleLoginAccount}>Log In</button>
+          </div>
+        </div>
+      </Modal>
         <nav>
             <li className='navHeight'>
               <div className='nav-flex-container'>

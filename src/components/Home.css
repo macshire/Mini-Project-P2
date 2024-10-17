@@ -372,23 +372,73 @@ body {
 }
 
 .modalContainer {
-  z-index: 1;
+  z-index: 1000;
   width: 100vw;
-  background-clip: padding-box;
-  background-color: var(--bs-modal-bg);
-  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
-  border-radius: var(--bs-modal-border-radius);
-  color: var(--bs-modal-color);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 50vw;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  outline: 0;
-  pointer-events: auto;
-  position: relative;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: var(--bs-modal-width);
-  align-items: center;
+}
+
+.modalHeader {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.modalBody {
+  margin-bottom: 1rem;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#xButton {
+  margin-left: 20vw;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.showPWButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #007bff;
+}
+
+#eyeVisible, #eyeInvisible {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-right: 5px;
 }
 
 #noSearch {
