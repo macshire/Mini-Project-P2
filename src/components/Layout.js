@@ -15,6 +15,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 // const InputCustom = React.memo((props) => {
 //   console.log('render');
