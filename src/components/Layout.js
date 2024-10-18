@@ -17,6 +17,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
 // const InputCustom = React.memo((props) => {
 //   console.log('render');
@@ -182,6 +183,24 @@ const handleLogInClicked = () => {
 // const location = useLocation();
 //   //access user data passed via state
 //   const { user } = location.state || {};
+
+//firebase config
+const firebaseConfig = {
+  apiKey: "API_KEY",
+  authDomain: "PROJECT_ID.firebaseapp.com",
+  // The value of `databaseURL` depends on the location of the database
+  databaseURL: "https://DATABASE_NAME.firebaseio.com",
+  projectId: "PROJECT_ID",
+  storageBucket: "PROJECT_ID.appspot.com",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID",
+  // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
+  measurementId: "G-MEASUREMENT_ID",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
     return(
       <>
