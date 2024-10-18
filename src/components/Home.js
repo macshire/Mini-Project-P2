@@ -239,6 +239,7 @@ export async function getStaticProps() {
   //call an external API endpoint to get posts
   const res = await fetch('http://localhost:7000/books')
   const books = await res.json()
+  //eeeee
  
   //by returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time

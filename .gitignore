@@ -81,3 +81,4 @@ firebase-debug.log
 
 # GitHub-specific
 !.github/
+node_modules/.cache/.eslintcache
