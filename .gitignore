@@ -24,3 +24,8 @@ hs_err_pid*
 replay_pid*
 node_modules
 *.pack
+node_modules/.cache/.eslintcache
+node_modules/.cache/default-development/0.pack
+*.pack
+*.old
+*.pack
