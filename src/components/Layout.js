@@ -204,16 +204,32 @@ const db = getFirestore(app);
 
     return(
       <>
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
       {/* link makes pop up work but changes some layout, uncomment with caution */}
       {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link> */}
       {/* pop up when registering/loging in */}
       <Modal show={show} onHide={handleClose} className="modalContainer">
         <div className="modalContent">
-          <div className="modalHeader">
-            Register
-            <button onClick={handleClose} id="xButton">&times;</button>
-          </div>
+        {registerPressed? (
+              <>
+                <div className="modalHeader">
+                  Register
+                  <button onClick={handleClose} id="xButton">
+                    &times;
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="modalHeader">
+                  Login
+                  <button onClick={handleClose} id="xButton">
+                    &times;
+                  </button>
+                </div>
+              </>
+            )}
           <div className="modalBody">
             <label className="modalText">Username:</label>
             <input className="modalInput" value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />

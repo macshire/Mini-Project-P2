@@ -55,8 +55,10 @@
 #titleBackground {
   z-index: -10;
   height: 28vw;
-  background-image: url('https://media.licdn.com/dms/image/v2/D4D16AQF9Khhlg2kEtw/profile-displaybackgroundimage-shrink_200_800/profile-displaybackgroundimage-shrink_200_800/0/1715758260542?e=2147483647&v=beta&t=HzXxUo-U8g-e4oBHRNRZyqsGEG1uLf1x3gc_CT_g1HQ');
-  background-size: cover;
+  background-image: url('https://img.freepik.com/free-photo/ancient-books-adorn-library-carefully-arranged-with-classics-rare-gems_157027-2575.jpg');
+  background-size: contain;
+  /* background-image: url('https://media.licdn.com/dms/image/v2/D4D16AQF9Khhlg2kEtw/profile-displaybackgroundimage-shrink_200_800/profile-displaybackgroundimage-shrink_200_800/0/1715758260542?e=2147483647&v=beta&t=HzXxUo-U8g-e4oBHRNRZyqsGEG1uLf1x3gc_CT_g1HQ'); */
+  /* background-size: cover; */
   background-position: center center;
   position: relative;
   /* black tint to background */
@@ -304,6 +306,7 @@ body {
   margin-left: 3vw;
   color:  rgb(212, 175, 106);
   display: inline-block;
+  text-decoration: underline;
 }
 
 .navHeight {
@@ -524,8 +527,11 @@ body {
   font-size: 1.5vw;
 }
 
-div.scroll-container {
-  overflow: auto;
+.scroll-container {
+  position: relative;
+  width: 197.5vw; /* Set width of container */
+  margin: 0 auto;
+  overflow: hidden; /* Hide overflowing content */
   white-space: nowrap;
 }
 
@@ -536,7 +542,7 @@ div.scroll-container {
   top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: 40vw;
+  margin-top: 0vw;
   color: white;
   font-weight: bold;
   font-size: 1.3vw;
@@ -554,4 +560,16 @@ div.scroll-container {
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
+}
+
+.book-container {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.books-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
 }

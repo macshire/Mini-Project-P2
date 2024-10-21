@@ -166,6 +166,30 @@ const Home = ({ filteredBooks }) => {
     setSearchTerm(event.target.value);
   }
 
+  let currentIndex = 0;
+const booksPerPage = 4;
+const totalBooks = books.length;
+
+function moveSlides(direction) {
+  const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
+  const bookWrapper = document.querySelector('.books-wrapper');
+  
+  // Update current index based on the direction (next or prev)
+  currentIndex += direction;
+
+  // Ensure current index is within valid bounds
+  if (currentIndex < 0) {
+    currentIndex = maxIndex;
+  } else if (currentIndex > maxIndex) {
+    currentIndex = 0;
+  }
+
+  // Slide the book container
+  const shiftAmount = currentIndex * 100; // 100% shift per page
+  bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
+}
+
+
 
   return (
     <>
@@ -217,11 +241,16 @@ const Home = ({ filteredBooks }) => {
           All
         </span>
         <div class="scroll-container">
-          <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+          <a class="prev" onclick="moveSlides(-1)">❮</a>
+          <a class="next" onclick="moveSlides(1)">❯</a>
+          <div class="book-container">
+            <div class="books-wrapper">
+              <Book stories={books.slice(0,4)} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+              <Book stories={books.slice(4,8)} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+            </div>
+          </div>
         </div>
         <span className='flex-container'>
-          <a class="prev">❮</a>
-          <a class="next">❯</a>
           <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
         </span>
       </div>
