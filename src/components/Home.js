@@ -98,7 +98,7 @@ const Home = ({ filteredBooks }) => {
       .catch(error => {
         //console.error('There was an error fetching the users!', error);
       });
-}, [])
+  }, [])
 
   //DB, filtering books based on DB
   useEffect(() => {
@@ -216,7 +216,12 @@ const Home = ({ filteredBooks }) => {
         <span className='flex-container'>
           <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
         </span>
-
+        <h2>
+          scroll test
+        </h2>
+        <div class="scroll-container">
+          <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+        </div>
       </div>
       </>
   );

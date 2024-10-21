@@ -514,3 +514,9 @@ body {
   color: rgb(235, 210, 173);
   font-size: 1.5vw;
 }
+
+div.scroll-container {
+  overflow: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
