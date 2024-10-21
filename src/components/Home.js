@@ -213,15 +213,17 @@ const Home = ({ filteredBooks }) => {
           {/* conditionally renders the message */}
           {show && <div id="noSearch">No search results...</div>}
       </div>
-        <span className='flex-container'>
-          <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+        <span className="header2Text">
+          All
         </span>
-        <h2>
-          scroll test
-        </h2>
         <div class="scroll-container">
           <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
         </div>
+        <span className='flex-container'>
+          <a class="prev">❮</a>
+          <a class="next">❯</a>
+          <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+        </span>
       </div>
       </>
   );

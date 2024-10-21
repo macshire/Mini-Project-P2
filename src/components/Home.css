@@ -244,7 +244,7 @@ body {
   border-color: rgb(114, 83, 54);
   border-width: 0.4vw;
   align-items: center;
-  margin-left: 2.8vw;
+  margin-left: 3vw;
   margin-right: 1vw;
   margin-top: 2vw;
   margin-bottom: 2vw;
@@ -297,6 +297,15 @@ body {
   display: inline-block;
 } 
 
+.header2Text {
+  font-size: 5vw;
+  margin-top: 0.5vw;
+  font-family: "Bebas Neue", sans-serif;
+  margin-left: 3vw;
+  color:  rgb(212, 175, 106);
+  display: inline-block;
+}
+
 .navHeight {
   list-style-type: none;
 }
@@ -336,7 +345,7 @@ body {
   transform: translateX(-2.2vw) translateY(0.9vw);
   font-size: 1.2vw;
   border-radius: 100%;
-  position: absolute;
+  /*position: absolute;*/
 }
 
 #bookMark:hover {
@@ -518,5 +527,31 @@ body {
 div.scroll-container {
   overflow: auto;
   white-space: nowrap;
-  padding: 10px;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: 40vw;
+  color: white;
+  font-weight: bold;
+  font-size: 1.3vw;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
 }
