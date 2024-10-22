@@ -170,26 +170,28 @@ const Home = ({ filteredBooks }) => {
     const totalBooks = books.length;
     const [currentIndex, setCurrentIndex] = useState(0);
   
-    // Define moveSlides function inside the component
     const moveSlides = (direction) => {
       console.log("ARROW CLICKED");
   
+      //getting max page index, -1 because starts from 0
       const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
       let newIndex = currentIndex + direction;
   
-      // Ensure the newIndex wraps around when going out of bounds
+      //ensure the newIndex wraps around when going out of bounds
       if (newIndex < 0) {
+        //wraps to last page if trying to go backward on first page
         newIndex = maxIndex;
       } else if (newIndex > maxIndex) {
+        //wraps to first page if trying to go forward on last page
         newIndex = 0;
       }
-  
+      //update newIndex state
       setCurrentIndex(newIndex);
-  
-      // Slide the books (adjust the shiftAmount based on your layout)
+      //setting amount to slide the books (adjust the shiftAmount)
       const shiftAmount = newIndex * 6.25;
       const bookWrapper = document.querySelector('.books-wrapper');
       if (bookWrapper) {
+        //updating transform of bookWrapper, controls the 'sliding' effect 
         bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
       }
   };
