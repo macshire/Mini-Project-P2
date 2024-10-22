@@ -226,7 +226,7 @@ useEffect(() => {
       script.onload = () => {
         window.onloadCallback = function () {
           window.grecaptcha.render('google-recaptcha-checkbox', {
-            //replace with your reCAPTCHA site key
+            //replace with reCAPTCHA site key
             'sitekey': '6LcOo2gqAAAAAIEDlulzUNYFCJx4NXjxqMLvRtm5'  
           });
         };
@@ -236,8 +236,8 @@ useEffect(() => {
     if (show && !registerPressed) {
       loadRecaptcha();
     }
-  }, [show, registerPressed]);  // Only load the reCAPTCHA when the modal is shown
-
+    //only load the reCAPTCHA when the modal is shown
+  }, [show, registerPressed]);  
 
     return(
       <>
@@ -294,6 +294,15 @@ useEffect(() => {
                 {/* <button className="showPWButton" onClick={handlePasswordVisibility}>Show Password</button> */}
               </>
             )}
+            {registerPressed? (
+              <>
+              </>
+            ) : (
+              <>
+                {/* checkbox captcha */}
+                <div id="google-recaptcha-checkbox"></div>
+              </>
+            )}
           </div>
           <div className="modalFooter">
             <button className="button" onClick={handleClose}>Close</button>
@@ -304,14 +313,11 @@ useEffect(() => {
             ) : (
               <>
                 <button className="button" onClick={handleLoginAccount}>Log In</button>
-                {/* checkbox captcha */}
-                <div id="google-recaptcha-checkbox"></div>
               </>
             )}
           </div>
         </div>
       </Modal>
-      {/* insert captcha here maybe?*/}
         <nav>
             <li className='navHeight'>
               <div className='nav-flex-container'>
