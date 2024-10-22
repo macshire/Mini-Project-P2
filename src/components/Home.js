@@ -188,7 +188,7 @@ const Home = ({ filteredBooks }) => {
       //update newIndex state
       setCurrentIndex(newIndex);
       //setting amount to slide the books (adjust the shiftAmount)
-      const shiftAmount = newIndex * 6.25;
+      const shiftAmount = newIndex * 2.78;
       const bookWrapper = document.querySelector('.books-wrapper');
       if (bookWrapper) {
         //updating transform of bookWrapper, controls the 'sliding' effect 
@@ -252,10 +252,9 @@ const Home = ({ filteredBooks }) => {
           <a class="next" onClick={() => moveSlides(1)}>❯</a>
           <div class="book-container">
             <div class="books-wrapper">
-              {/* Render your book components dynamically */}
+              {/* render book components dynamically */}
               {books.map((book, index) => (
                 <div key={index} className="book">
-                  {/* Your Book component */}
                   <Book stories={books} />
                 </div>
               ))}

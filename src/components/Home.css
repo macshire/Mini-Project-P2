@@ -74,7 +74,7 @@
   padding: 0;
   top: 50%;
   left: 50%;
-  color: rgb(212, 175, 106);
+  color: rgb(231, 222, 204);
   transform: translate(-50%, -50%);
   /* keep font consistent */
   white-space: nowrap;
@@ -91,7 +91,7 @@
   padding: 0;
   top: 75%;
   left: 50%;
-  color:rgb(212, 175, 106);
+  color:rgb(231, 222, 204);
   transform: translate(-50%, -50%);
   white-space: nowrap;
   font-family: "Bebas Neue", sans-serif;
@@ -295,7 +295,7 @@ body {
   margin-top: 0.5vw;
   font-family: "Bebas Neue", sans-serif;
   margin-left: -8vw;
-  color:  rgb(212, 175, 106);
+  color:  rgb(231, 222, 204);
   display: inline-block;
 } 
 
@@ -531,11 +531,11 @@ body {
   position: relative;
   /* width: 197.5vw;  Set width of container */ 
   margin: 0 auto;
-  overflow: hidden; /* Hide overflowing content */
+  /* hide overflowing content */
+  overflow: hidden; 
   white-space: nowrap;
 }
 
-/* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -552,14 +552,13 @@ body {
   z-index: 1;
 }
 
-/* Position the "next button" to the right */
+/* next button to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
   z-index: 1;
 }
 
-/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   z-index: 1;
   background-color: rgba(0,0,0,0.8);
@@ -574,6 +573,7 @@ body {
 }
 
 .books-wrapper {
+  transition: transform 0.4s ease-in-out; 
+  /* smooth sliding effect */
   display: flex;
-  transition: transform 0.5s ease-in-out; /* Smooth sliding effect */
 }
