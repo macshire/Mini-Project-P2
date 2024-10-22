@@ -166,28 +166,33 @@ const Home = ({ filteredBooks }) => {
     setSearchTerm(event.target.value);
   }
 
-  let currentIndex = 0;
-const booksPerPage = 4;
-const totalBooks = books.length;
-
-function moveSlides(direction) {
-  const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
-  const bookWrapper = document.querySelector('.books-wrapper');
+    const booksPerPage = 4;
+    const totalBooks = books.length;
+    const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Update current index based on the direction (next or prev)
-  currentIndex += direction;
-
-  // Ensure current index is within valid bounds
-  if (currentIndex < 0) {
-    currentIndex = maxIndex;
-  } else if (currentIndex > maxIndex) {
-    currentIndex = 0;
-  }
-
-  // Slide the book container
-  const shiftAmount = currentIndex * 100; // 100% shift per page
-  bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
-}
+    // Define moveSlides function inside the component
+    const moveSlides = (direction) => {
+      console.log("ARROW CLICKED");
+  
+      const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
+      let newIndex = currentIndex + direction;
+  
+      // Ensure the newIndex wraps around when going out of bounds
+      if (newIndex < 0) {
+        newIndex = maxIndex;
+      } else if (newIndex > maxIndex) {
+        newIndex = 0;
+      }
+  
+      setCurrentIndex(newIndex);
+  
+      // Slide the books (adjust the shiftAmount based on your layout)
+      const shiftAmount = newIndex * 6.25;
+      const bookWrapper = document.querySelector('.books-wrapper');
+      if (bookWrapper) {
+        bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
+      }
+  };
 
 
 
@@ -241,12 +246,17 @@ function moveSlides(direction) {
           All
         </span>
         <div class="scroll-container">
-          <a class="prev" onclick="moveSlides(-1)">❮</a>
-          <a class="next" onclick="moveSlides(1)">❯</a>
+          <a class="prev" onClick={() => moveSlides(-1)}>❮</a>
+          <a class="next" onClick={() => moveSlides(1)}>❯</a>
           <div class="book-container">
             <div class="books-wrapper">
-              <Book stories={books.slice(0,4)} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
-              <Book stories={books.slice(4,8)} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+              {/* Render your book components dynamically */}
+              {books.map((book, index) => (
+                <div key={index} className="book">
+                  {/* Your Book component */}
+                  <Book stories={books} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
