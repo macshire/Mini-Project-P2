@@ -202,11 +202,55 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+// function checkRecaptcha() {
+//   var response = grecaptcha.getResponse();
+//   if(response.length == 0) { 
+//     //reCaptcha not verified
+//     alert("no pass"); 
+//   }
+//   else { 
+//     //reCaptch verified
+//     alert("pass"); 
+//   }
+// }
+
+useEffect(() => {
+    //load and initialize the Google reCAPTCHA script
+    const loadRecaptcha = () => {
+      const script = document.createElement("script");
+      script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit";
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+
+      script.onload = () => {
+        window.onloadCallback = function () {
+          window.grecaptcha.render('google-recaptcha-checkbox', {
+            //replace with your reCAPTCHA site key
+            'sitekey': '6LcOo2gqAAAAAIEDlulzUNYFCJx4NXjxqMLvRtm5'  
+          });
+        };
+      };
+    };
+
+    if (show && !registerPressed) {
+      loadRecaptcha();
+    }
+  }, [show, registerPressed]);  // Only load the reCAPTCHA when the modal is shown
+
+
     return(
       <>
       <head>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"async defer></script>
       </head>
+      {/* <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+        crossorigin="anonymous"/>
+      <link rel="stylesheet" href="style.css"/> */}
       {/* link makes pop up work but changes some layout, uncomment with caution */}
       {/* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"></link> */}
@@ -260,6 +304,8 @@ const db = getFirestore(app);
             ) : (
               <>
                 <button className="button" onClick={handleLoginAccount}>Log In</button>
+                {/* checkbox captcha */}
+                <div id="google-recaptcha-checkbox"></div>
               </>
             )}
           </div>

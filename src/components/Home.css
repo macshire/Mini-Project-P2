@@ -307,6 +307,7 @@ body {
   color:  rgb(212, 175, 106);
   display: inline-block;
   text-decoration: underline;
+  background-color: rgb(43, 75, 57);
 }
 
 .navHeight {
@@ -534,6 +535,7 @@ body {
   /* hide overflowing content */
   overflow: hidden; 
   white-space: nowrap;
+  background-color: rgb(43, 75, 57);
 }
 
 .prev, .next {
