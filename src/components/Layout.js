@@ -76,8 +76,13 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [userId, setUserId] = useState(null);
 const [passwordVisible, setPasswordVisibility] = useState(false)
 const [registerPressed, setRegisterPressed] = useState(false)
+const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-const handleClose = () => setShow(false); 
+const handleClose = () => {
+  setShow(false); 
+  setIsButtonDisabled(true);
+}
+
 const handleShow = () => setShow(true);
 
 
@@ -214,6 +219,11 @@ const db = getFirestore(app);
 //   }
 // }
 
+const recaptchaCallback = () => {
+  //use state instead to set disabled value of loginButton to true or false
+  setIsButtonDisabled(false);
+};
+
 useEffect(() => {
     //load and initialize the Google reCAPTCHA script
     const loadRecaptcha = () => {
@@ -227,7 +237,8 @@ useEffect(() => {
         window.onloadCallback = function () {
           window.grecaptcha.render('google-recaptcha-checkbox', {
             //replace with reCAPTCHA site key
-            'sitekey': '6LcOo2gqAAAAAIEDlulzUNYFCJx4NXjxqMLvRtm5'  
+            'sitekey': '6LcOo2gqAAAAAIEDlulzUNYFCJx4NXjxqMLvRtm5',
+            'callback': recaptchaCallback
           });
         };
       };
@@ -244,6 +255,7 @@ useEffect(() => {
       <head>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"async defer></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       </head>
       {/* <link 
         rel="stylesheet" 
@@ -300,7 +312,7 @@ useEffect(() => {
             ) : (
               <>
                 {/* checkbox captcha */}
-                <div id="google-recaptcha-checkbox"></div>
+                <div id="google-recaptcha-checkbox" data-callback="recaptchaCallback"></div>
               </>
             )}
           </div>
@@ -312,7 +324,7 @@ useEffect(() => {
               </>
             ) : (
               <>
-                <button className="button" onClick={handleLoginAccount}>Log In</button>
+                <button className="button" id="loginButton" onClick={handleLoginAccount} disabled={isButtonDisabled}>Log In</button>
               </>
             )}
           </div>

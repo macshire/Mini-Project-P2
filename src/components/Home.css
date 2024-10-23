@@ -584,3 +584,11 @@ body {
 #google-recaptcha-checkbox {
   margin-top: 1.5vw;
 }
+
+#loginButton:disabled {
+  background-color: black;
+  color: white;
+  /* changes the cursor to show it's not clickable */
+  cursor: not-allowed; 
+  opacity: 0.5; 
+}
