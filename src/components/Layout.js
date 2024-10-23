@@ -78,7 +78,8 @@ const [userId, setUserId] = useState(null);
 const [passwordVisible, setPasswordVisibility] = useState(false)
 const [registerPressed, setRegisterPressed] = useState(false)
 const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-const [isPassword, setIsPassword] = useState(true);
+const [isLoginRight, setIsLoginRight] = useState(true);
+const [isCreatedAccount, setIsCreatedAccount] = useState(true);
 
 const handleClose = () => {
   setShow(false); 
@@ -113,7 +114,10 @@ const handleCreateAccount = () => {
   //criteria, 1 uppercase, 1 number, 1 symbol, >= 10 characters
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{10,}$/;
   if (!passwordRegex.test(password)) {
-    alert('Invalid password: 1 uppercase, 1 number, 1 symbol, and minimum 10 characters required.');
+    setIsCreatedAccount(false);
+    setUsername('');
+    setPassword('');
+    //alert('Invalid password: 1 uppercase, 1 number, 1 symbol, and minimum 10 characters required.');
     return;
   } 
   const existingUser = user.find(user => user.username === username);
@@ -123,7 +127,7 @@ const handleCreateAccount = () => {
     alert('Username already exists, please choose another one.');
     return;
   }
-  
+  setIsCreatedAccount(true);
   //close the modal if password is valid
   alert('Account created successfully!');
   setShow(false);
@@ -147,7 +151,7 @@ const handleLoginAccount = () => {
   const existingUser = user.find(user => user.username === username && user.password === password);
   console.log(username, password)
   if (existingUser) {
-    setIsPassword(true);
+    setIsLoginRight(true);
     alert('Login successful!');
     setShow(false);
     //setting logged in user
@@ -157,10 +161,14 @@ const handleLoginAccount = () => {
     setUserId(existingUser.id);
     // setUserId(existingUser.id);
     console.log(existingUser);
+    setUsername('');
+    setPassword('');
     // be able to store data that there is a logged in user so when refresh, still stays
   } else {
     //need to replace with a text in the UI
-    setIsPassword(false);
+    setIsLoginRight(false);
+    setUsername('');
+    setPassword('');
     //alert('Invalid username or password.');
   }
 };
@@ -302,12 +310,20 @@ useEffect(() => {
               </>
             )}
             <div>
-              {isPassword? (
+              {isLoginRight? (
                 <>
                 </>
               ) : (
                 <>
                   <p id="incorrectText">Incorrect username or password</p>
+                </>
+              )}
+              {isCreatedAccount? (
+                <>
+                </>
+              ) : (
+                <>
+                  <p id="incorrectText">Invalid password: 1 uppercase, 1 number, 1 symbol, and minimum 10 characters required</p>
                 </>
               )}
             </div>
