@@ -592,3 +592,7 @@ body {
   cursor: not-allowed; 
   opacity: 0.5; 
 }
+
+#incorrectText {
+  color: red;
+}

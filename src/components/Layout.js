@@ -18,6 +18,7 @@ import { useLocation } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import firebase from "firebase/compat/app";
 
 // const InputCustom = React.memo((props) => {
 //   console.log('render');
@@ -77,6 +78,7 @@ const [userId, setUserId] = useState(null);
 const [passwordVisible, setPasswordVisibility] = useState(false)
 const [registerPressed, setRegisterPressed] = useState(false)
 const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+const [isPassword, setIsPassword] = useState(true);
 
 const handleClose = () => {
   setShow(false); 
@@ -145,6 +147,7 @@ const handleLoginAccount = () => {
   const existingUser = user.find(user => user.username === username && user.password === password);
   console.log(username, password)
   if (existingUser) {
+    setIsPassword(true);
     alert('Login successful!');
     setShow(false);
     //setting logged in user
@@ -156,7 +159,9 @@ const handleLoginAccount = () => {
     console.log(existingUser);
     // be able to store data that there is a logged in user so when refresh, still stays
   } else {
-    alert('Invalid username or password.');
+    //need to replace with a text in the UI
+    setIsPassword(false);
+    //alert('Invalid username or password.');
   }
 };
 
@@ -202,6 +207,9 @@ const firebaseConfig = {
   // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
   measurementId: "G-MEASUREMENT_ID",
 };
+
+//initialize firebase
+firebase.initializeApp(firebaseConfig);
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -256,6 +264,11 @@ useEffect(() => {
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"async defer></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+        <script defer src="./init-firebase.js"></script>
       </head>
       {/* <link 
         rel="stylesheet" 
@@ -288,6 +301,16 @@ useEffect(() => {
                 </div>
               </>
             )}
+            <div>
+              {isPassword? (
+                <>
+                </>
+              ) : (
+                <>
+                  <p id="incorrectText">Incorrect username or password</p>
+                </>
+              )}
+            </div>
           <div className="modalBody">
             <label className="modalText">Username:</label>
             <input className="modalInput" value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />
