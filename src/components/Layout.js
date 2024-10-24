@@ -19,6 +19,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import firebase from "firebase/compat/app";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 // const InputCustom = React.memo((props) => {
 //   console.log('render');
@@ -111,6 +112,7 @@ const handlePasswordChange = (event) => {
 };
 
 const handleCreateAccount = () => {
+  const auth = getAuth();
   //criteria, 1 uppercase, 1 number, 1 symbol, >= 10 characters
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{10,}$/;
   if (!passwordRegex.test(password)) {
@@ -204,12 +206,12 @@ const handleLogInClicked = () => {
 
 //firebase config
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "PROJECT_ID.firebaseapp.com",
+  apiKey: "AIzaSyBR_x56CequuSLWxoffR27gAtS-zZeriGI",
+  authDomain: "hybridtechnologies-miniproject.firebaseapp.com",
   // The value of `databaseURL` depends on the location of the database
   databaseURL: "https://DATABASE_NAME.firebaseio.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
+  projectId: "hybridtechnologies-miniproject",
+  storageBucket: "hybridtechnologies-miniproject.appspot.com",
   messagingSenderId: "SENDER_ID",
   appId: "APP_ID",
   // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
