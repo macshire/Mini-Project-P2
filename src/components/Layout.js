@@ -174,6 +174,9 @@ const handleCreateAccount = async () => {
   //close the modal if password is valid
   alert('Account created successfully!');
   setShow(false);
+  setUsername('');
+  setPassword('');
+  setEmail('');
   //add logic to send post to db in order to create a new user
   //creating a new user in DB
   try {
@@ -188,6 +191,7 @@ const handleCreateAccount = async () => {
     await axios.post('http://localhost:7000/register', {
       email: email,
       username: username,
+      //id in firestore
       uid: user.uid,
       created_at: 'now'
     });
