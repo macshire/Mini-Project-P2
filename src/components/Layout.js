@@ -19,7 +19,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import firebase from "firebase/compat/app";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 // const InputCustom = React.memo((props) => {
 //   console.log('render');
@@ -116,7 +116,43 @@ const handleEmailChange = (event) => {
   setEmail(event.target.value);
 }
 
-const handleCreateAccount = () => {
+// const handleCreateAccount = () => {
+//   const auth = getAuth();
+//   //criteria, 1 uppercase, 1 number, 1 symbol, >= 10 characters
+//   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{10,}$/;
+//   if (!passwordRegex.test(password)) {
+//     setIsCreatedAccount(false);
+//     setUsername('');
+//     setPassword('');
+//     //alert('Invalid password: 1 uppercase, 1 number, 1 symbol, and minimum 10 characters required.');
+//     return;
+//   } 
+//   const existingUser = user.find(user => user.username === username);
+//   console.log(existingUser);
+//   console.log(user, username);
+//   if (existingUser) {
+//     alert('Username already exists, please choose another one.');
+//     return;
+//   }
+//   setIsCreatedAccount(true);
+//   //close the modal if password is valid
+//   alert('Account created successfully!');
+//   setShow(false);
+//   //add logic to send post to db in order to create a new user
+//   //creating a new user in DB
+//   axios.post('http://localhost:7000/register', {
+//     username: username,
+//     password: password,
+//     created_at: 'now'
+//   }).then(response => {
+//     console.log("MADE ACC YAY", response.data);
+//     fetchUsers();
+//    }).catch(error => {
+//     console.log("didnt make acc booo", error);
+//   })
+// };
+
+const handleCreateAccount = async () => {
   const auth = getAuth();
   //criteria, 1 uppercase, 1 number, 1 symbol, >= 10 characters
   const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{10,}$/;
@@ -140,16 +176,25 @@ const handleCreateAccount = () => {
   setShow(false);
   //add logic to send post to db in order to create a new user
   //creating a new user in DB
-  axios.post('http://localhost:7000/register', {
-    username: username,
-    password: password,
-    created_at: 'now'
-  }).then(response => {
-    console.log("MADE ACC YAY", response.data);
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    
+    //send email verification
+    await sendEmailVerification(user);
+    alert('Verification email sent! Please check your inbox.');
+
+    //store username in Firestore linked to the Firebase user UID
+    await axios.post('http://localhost:7000/register', {
+      email: email,
+      username: username,
+      uid: user.uid,
+      created_at: 'now'
+    });
     fetchUsers();
-   }).catch(error => {
-    console.log("didnt make acc booo", error);
-  })
+  } catch (error) {
+    console.error("Error creating account", error);
+  }
 };
 
 const handleLoginAccount = () => {
