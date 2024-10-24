@@ -68,16 +68,17 @@ const Layout = ({ stories }) => {
 */
 
 const [show, setShow] = useState(false);
-const [username, setUsername] = useState('')
-const [password, setPassword] = useState('')
+const [username, setUsername] = useState('');
+const [password, setPassword] = useState('');
+const [email, setEmail] = useState('');
 const location = useLocation();
 const [user, setUser] = useState(location.state?.user || null);
 //CHANGE NULL TO A BLANK STRING FOR TESTING, REMEMBER TO CHANGE BACK
 const [userLoggedIn, setUserLoggedIn] = useState();
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [userId, setUserId] = useState(null);
-const [passwordVisible, setPasswordVisibility] = useState(false)
-const [registerPressed, setRegisterPressed] = useState(false)
+const [passwordVisible, setPasswordVisibility] = useState(false);
+const [registerPressed, setRegisterPressed] = useState(false);
 const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 const [isLoginRight, setIsLoginRight] = useState(true);
 const [isCreatedAccount, setIsCreatedAccount] = useState(true);
@@ -110,6 +111,10 @@ const handleUsernameChange = (event) => {
 const handlePasswordChange = (event) => {
   setPassword(event.target.value);
 };
+
+const handleEmailChange = (event) => {
+  setEmail(event.target.value);
+}
 
 const handleCreateAccount = () => {
   const auth = getAuth();
@@ -329,6 +334,10 @@ useEffect(() => {
                 </>
               )}
             </div>
+          <div className="modalBody">
+            <label className="modalText">Email:</label>
+            <input className="modalInput" value={email} onChange={handleEmailChange} placeholder="eg. user@gmail.com" />
+          </div>
           <div className="modalBody">
             <label className="modalText">Username:</label>
             <input className="modalInput" value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />

@@ -423,7 +423,8 @@ body {
 }
 
 .modalBody {
-  margin-bottom: 1rem;
+  margin-bottom: 0.6rem;
+  margin-top: 0.6rem;
 }
 
 .inputBar {
