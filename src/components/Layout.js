@@ -183,7 +183,8 @@ const handleCreateAccount = async () => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
     
-    //send email verification
+    //send email verification 
+    //*NEED TO MOVE TO BACKEND
     await sendEmailVerification(user);
     alert('Verification email sent! Please check your inbox.');
 
@@ -191,6 +192,7 @@ const handleCreateAccount = async () => {
     await axios.post('http://localhost:7000/register', {
       email: email,
       username: username,
+      password: password,
       //id in firestore
       uid: user.uid,
       created_at: 'now'
