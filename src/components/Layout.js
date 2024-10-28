@@ -185,7 +185,7 @@ const handleCreateAccount = async () => {
     
     //send email verification 
     //*NEED TO MOVE TO BACKEND
-    await sendEmailVerification(user);
+    //await sendEmailVerification(user);
     alert('Verification email sent! Please check your inbox.');
 
     //store username in Firestore linked to the Firebase user UID
@@ -194,8 +194,8 @@ const handleCreateAccount = async () => {
       username: username,
       password: password,
       //id in firestore
-      uid: user.uid,
-      created_at: 'now'
+      // uid: user.uid,
+      // created_at: 'now'
     });
     fetchUsers();
   } catch (error) {
