@@ -142,13 +142,13 @@ const Social = () => {
         <link rel="stylesheet" type="text/css" href="App.css"/>
         <script defer src='activePage.js'></script>
       </head> 
-      <div id="profile">
+      <div id="social">
         <div id="titleBackground">
           <div id="titleName">
-            <p>Sách sâu</p>
+            <p>Social</p>
           </div>
           <div id="titleWords">
-            <p>Create your own library</p>
+            <p>Discuss with fellow book worms</p>
           </div>
         </div>
         <div className="headerBorder">
@@ -169,11 +169,11 @@ const Social = () => {
               <MenuItem value={'Literature'}>Literature</MenuItem>
             </Select>
             </div>
-        <span className="headerText">Browse</span>
+        <span className="headerText">FRIENDS</span>
         <input
             type="text"
             id='searchBar'
-            placeholder="Find a book for yourself!"
+            placeholder="Search for their name!"
             value={searchTerm}
             onChange={handleSearchChange}
           />
@@ -183,25 +183,25 @@ const Social = () => {
           {show && <div id="noSearch">No search results...</div>}
       </div>
         <span className="header2Text">
-          All
+          List
         </span>
-        <div class="scroll-container">
-          <a class="prev" onClick={() => moveSlides(-1)}>❮</a>
-          <a class="next" onClick={() => moveSlides(1)}>❯</a>
-          <div class="book-container">
-            <div class="books-wrapper">
-              {/* render book components dynamically */}
-              {books.map((book, index) => (
-                <div key={index} className="book">
-                  <Book stories={books} />
+        <div>
+            {/* put user layout thing here*/}
+            <div className='socialPageContainer' >
+                <div className="social-flex-container">
+
+                <img className='socialImage'></img>
+                <br></br>
+                <div className='socialPageText'>
+                    <span></span>
+                    <br></br>
+                    <span>Name</span>
+                    <br></br>
+                    <a>Reviews</a>
                 </div>
-              ))}
-            </div>
-          </div>
+                </div>
+            </div> 
         </div>
-        <span className='flex-container'>
-          <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
-        </span>
       </div>
       </>
   );

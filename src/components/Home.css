@@ -184,7 +184,9 @@ a:is(:link, :active, :visited){
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-color: rgb(43, 75, 57);
+  /* background-color: rgb(43, 75, 57); */
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgb(27, 22, 20);
 }
 
 .nav-flex-container {
@@ -205,7 +207,8 @@ a:is(:link, :active, :visited){
 }
 
 body {
-  background-color: rgb(43, 75, 57);
+  /* background-color: rgb(43, 75, 57); */
+  background-color: rgb(0, 0, 0);
 }
 
 /* profile picture image top left */
@@ -307,7 +310,9 @@ body {
   color:  rgb(212, 175, 106);
   display: inline-block;
   text-decoration: underline;
-  background-color: rgb(43, 75, 57);
+  /* background-color: rgb(43, 75, 57); */
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgb(27, 22, 20);
 }
 
 .navHeight {
@@ -537,7 +542,9 @@ body {
   /* hide overflowing content */
   overflow: hidden; 
   white-space: nowrap;
-  background-color: rgb(43, 75, 57);
+  /* background-color: rgb(43, 75, 57); */
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgb(27, 22, 20);
 }
 
 .prev, .next {
@@ -597,3 +604,54 @@ body {
 #incorrectText {
   color: red;
 }
+
+.homepageBody {
+  background-color: rgb(27, 22, 20);
+}
+
+/* socialContainer */
+
+.socialPageContainer {
+  width: 45vw;
+  height: 20vw;
+  color: white;
+  border: solid;
+  border-color: rgb(114, 83, 54);
+  border-width: 0.4vw;
+  align-items: center;
+  margin-left: 3vw;
+  margin-right: 1vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  display: inline-block;
+  border-radius: 4%;
+  background-color: rgb(212, 175, 106);
+  transition: all .1s ease-in-out;
+  cursor: pointer;
+}
+
+.socialImage {
+  width: 18vw;
+  height: 19vw;
+  align-items: center;
+  border-radius: 4%;
+  margin-left: -1vw;
+  margin-top: 0.5vw;
+  transform: translate(10%,0%);
+}
+
+.socialPageText {
+  font-size: 2vw;
+  align-items: center;
+  color: black;
+  margin-left: 4vw;
+}
+
+.social-flex-container {
+  display: flex;
+  overflow: hidden;
+  /* background-color: rgb(43, 75, 57); */
+  /* background-color: rgb(0, 0, 0); */
+}
+
+/* socialContainer */
