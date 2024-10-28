@@ -369,7 +369,7 @@ body {
   border-radius: 4px;
   margin-right: 0.8vw;
   background-color: rgb(255, 255, 255);
-  transform: translateX(13.4vw);
+  transform: translateX(6vw);
 }
 
 .navButtons :hover {

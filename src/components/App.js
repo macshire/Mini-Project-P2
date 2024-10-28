@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BookMark from "./BookMark";
 import { useEffect } from "react";
 import booksData from "../data/booksData";
+import Social from "./Social";
 
 
 <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="about/:id" element={<About />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="bookmark" element={<BookMark />} />
+          <Route path="social" element={<Social />} />
           {/* need to make path for profile section, can include a delete button for reviews */}
           <Route path="profile" element={<Profile />} />
         </Route>

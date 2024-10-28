@@ -437,6 +437,7 @@ useEffect(() => {
                 <Link to="/">Home</Link>
                 <Link to="/leaderboard">Leaderboard</Link>
                 <Link to="/bookmark">BookMark</Link>
+                <Link to="/social">Social</Link>
                 <div className="navButtonContainer">
                 {/* conditional rendering based on if logged in or not, and whose account is logged in ((condition) true : false)*/}
                 {isLoggedIn? (
