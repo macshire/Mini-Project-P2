@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client"
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import "./Home.css";
 import "./Layout";
-import Book from './Books/Book'; 
+import Friends from "./Socials/Friends";
 import { connect } from 'react-redux';
 import store from "../store";
 import { type } from "@testing-library/user-event/dist/type";
@@ -21,16 +21,16 @@ import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 
 const Social = () => {
 
-  const [books, setBooks] = useState([]);
+  const [friends, setFriends] = useState([]);
   const [age, setAge] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [show, setShow] = useState(false);
 
   //DB, getting books from DB
   useEffect(() => {
-    axios.get('http://localhost:7000/books')
+    axios.get('http://localhost:7000/users')
       .then(response => {
-        setBooks(response.data); // Update state with the user data
+        setFriends(response.data); // Update state with the user data
         console.log("setBooks = " + response.data);
       })
       .catch(error => {
@@ -61,7 +61,7 @@ const Social = () => {
         }
 
         //set the filtered list of books
-        setBooks(filteredBooks);
+        setFriends(filteredBooks);
 
         //show message if no book/author found
         if (filteredBooks.length === 0) {
@@ -88,11 +88,11 @@ const Social = () => {
         let books = response.data; 
 
         if (genre === 'All'){
-          setBooks(books);
+          setFriends(books);
         }
         else {
           const filteredBooks = books.filter(book => book.genre === genre);
-          setBooks(filteredBooks);
+          setFriends(filteredBooks);
         }
       })
       .catch(error => {
@@ -100,39 +100,39 @@ const Social = () => {
       });
   }
   
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  }
+  // const handleSearchChange = (event) => {
+  //   setSearchTerm(event.target.value);
+  // }
 
-    const booksPerPage = 4;
-    const totalBooks = books.length;
-    const [currentIndex, setCurrentIndex] = useState(0);
+  //   const booksPerPage = 4;
+  //   const totalBooks = books.length;
+  //   const [currentIndex, setCurrentIndex] = useState(0);
   
-    const moveSlides = (direction) => {
-      console.log("ARROW CLICKED");
+  //   const moveSlides = (direction) => {
+  //     console.log("ARROW CLICKED");
   
-      //getting max page index, -1 because starts from 0
-      const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
-      let newIndex = currentIndex + direction;
+  //     //getting max page index, -1 because starts from 0
+  //     const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
+  //     let newIndex = currentIndex + direction;
   
-      //ensure the newIndex wraps around when going out of bounds
-      if (newIndex < 0) {
-        //wraps to last page if trying to go backward on first page
-        newIndex = maxIndex;
-      } else if (newIndex > maxIndex) {
-        //wraps to first page if trying to go forward on last page
-        newIndex = 0;
-      }
-      //update newIndex state
-      setCurrentIndex(newIndex);
-      //setting amount to slide the books (adjust the shiftAmount)
-      const shiftAmount = newIndex * 2.78;
-      const bookWrapper = document.querySelector('.books-wrapper');
-      if (bookWrapper) {
-        //updating transform of bookWrapper, controls the 'sliding' effect 
-        bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
-      }
-  };
+  //     //ensure the newIndex wraps around when going out of bounds
+  //     if (newIndex < 0) {
+  //       //wraps to last page if trying to go backward on first page
+  //       newIndex = maxIndex;
+  //     } else if (newIndex > maxIndex) {
+  //       //wraps to first page if trying to go forward on last page
+  //       newIndex = 0;
+  //     }
+  //     //update newIndex state
+  //     setCurrentIndex(newIndex);
+  //     //setting amount to slide the books (adjust the shiftAmount)
+  //     const shiftAmount = newIndex * 2.78;
+  //     const bookWrapper = document.querySelector('.books-wrapper');
+  //     if (bookWrapper) {
+  //       //updating transform of bookWrapper, controls the 'sliding' effect 
+  //       bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
+  //     }
+  // };
 
 
 
@@ -175,33 +175,19 @@ const Social = () => {
             id='searchBar'
             placeholder="Search for their name!"
             value={searchTerm}
-            onChange={handleSearchChange}
+            // onChange={handleSearchChange}
           />
         </div>
         <div>
           {/* conditionally renders the message */}
           {show && <div id="noSearch">No search results...</div>}
       </div>
+      <div className="homepageBody">
         <span className="header2Text">
           List
         </span>
-        <div>
-            {/* put user layout thing here*/}
-            <div className='socialPageContainer' >
-                <div className="social-flex-container">
-
-                <img className='socialImage'></img>
-                <br></br>
-                <div className='socialPageText'>
-                    <span></span>
-                    <br></br>
-                    <span>Name</span>
-                    <br></br>
-                    <a>Reviews</a>
-                </div>
-                </div>
-            </div> 
-        </div>
+        <Friends friends={friends} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+      </div>
       </div>
       </>
   );
