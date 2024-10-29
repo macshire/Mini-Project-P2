@@ -40,31 +40,30 @@ const Social = () => {
 
   //DB, filtering books based on DB
   useEffect(() => {
-    axios.get('http://localhost:7000/books')
+    axios.get('http://localhost:7000/users')
       .then(response => {
-        let filteredBooks = response.data;
+        let filterFriends = response.data;
 
-        //filter by genre when one of the options is clicked that is not '' and 'All'
-        if (age !== '' && age !== 'All') {
-          filteredBooks = filteredBooks.filter(book => book.genre === age);
-        }
+        // //filter by genre when one of the options is clicked that is not '' and 'All'
+        // if (age !== '' && age !== 'All') {
+        //   filterFriends = filterFriends.filter(friend => friend.genre === age);
+        // }
 
         //filter by both title and author through search bar 
         if (searchTerm) {
           //reset show state
           setShow(false); 
-          //set filteredBooks to either title or author
-          filteredBooks = filteredBooks.filter(book => 
-            book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            book.author.toLowerCase().includes(searchTerm.toLowerCase())
+          //set filterFriends to either title or author
+          filterFriends = filterFriends.filter(friend => 
+            friend.username.toLowerCase().includes(searchTerm.toLowerCase())
           );
         }
 
         //set the filtered list of books
-        setFriends(filteredBooks);
+        setFriends(filterFriends);
 
-        //show message if no book/author found
-        if (filteredBooks.length === 0) {
+        //show message if no friend/author found
+        if (filterFriends.length === 0) {
           setShow(true);
         } else {
           setShow(false);
@@ -82,17 +81,17 @@ const Social = () => {
     setAge(genre);
 
     //fetch books
-    axios.get('http://localhost:7000/books')
+    axios.get('http://localhost:7000/users')
       .then(response => {
         //update state with the user data
-        let books = response.data; 
+        let friends = response.data; 
 
         if (genre === 'All'){
-          setFriends(books);
+          setFriends(friends);
         }
         else {
-          const filteredBooks = books.filter(book => book.genre === genre);
-          setFriends(filteredBooks);
+          const filterFriends = friends.filter(friend => friend.genre === genre);
+          setFriends(filterFriends);
         }
       })
       .catch(error => {
@@ -100,39 +99,39 @@ const Social = () => {
       });
   }
   
-  // const handleSearchChange = (event) => {
-  //   setSearchTerm(event.target.value);
-  // }
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  }
 
-  //   const booksPerPage = 4;
-  //   const totalBooks = books.length;
-  //   const [currentIndex, setCurrentIndex] = useState(0);
+    const booksPerPage = 4;
+    const totalBooks = friends.length;
+    const [currentIndex, setCurrentIndex] = useState(0);
   
-  //   const moveSlides = (direction) => {
-  //     console.log("ARROW CLICKED");
+    const moveSlides = (direction) => {
+      console.log("ARROW CLICKED");
   
-  //     //getting max page index, -1 because starts from 0
-  //     const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
-  //     let newIndex = currentIndex + direction;
+      //getting max page index, -1 because starts from 0
+      const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
+      let newIndex = currentIndex + direction;
   
-  //     //ensure the newIndex wraps around when going out of bounds
-  //     if (newIndex < 0) {
-  //       //wraps to last page if trying to go backward on first page
-  //       newIndex = maxIndex;
-  //     } else if (newIndex > maxIndex) {
-  //       //wraps to first page if trying to go forward on last page
-  //       newIndex = 0;
-  //     }
-  //     //update newIndex state
-  //     setCurrentIndex(newIndex);
-  //     //setting amount to slide the books (adjust the shiftAmount)
-  //     const shiftAmount = newIndex * 2.78;
-  //     const bookWrapper = document.querySelector('.books-wrapper');
-  //     if (bookWrapper) {
-  //       //updating transform of bookWrapper, controls the 'sliding' effect 
-  //       bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
-  //     }
-  // };
+      //ensure the newIndex wraps around when going out of bounds
+      if (newIndex < 0) {
+        //wraps to last page if trying to go backward on first page
+        newIndex = maxIndex;
+      } else if (newIndex > maxIndex) {
+        //wraps to first page if trying to go forward on last page
+        newIndex = 0;
+      }
+      //update newIndex state
+      setCurrentIndex(newIndex);
+      //setting amount to slide the books (adjust the shiftAmount)
+      const shiftAmount = newIndex * 2.78;
+      const bookWrapper = document.querySelector('.books-wrapper');
+      if (bookWrapper) {
+        //updating transform of bookWrapper, controls the 'sliding' effect 
+        bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
+      }
+  };
 
 
 
@@ -148,7 +147,7 @@ const Social = () => {
             <p>Social</p>
           </div>
           <div id="titleWords">
-            <p>Discuss with fellow book worms</p>
+            <p>Discuss with fellow friend worms</p>
           </div>
         </div>
         <div className="headerBorder">
@@ -175,7 +174,7 @@ const Social = () => {
             id='searchBar'
             placeholder="Search for their name!"
             value={searchTerm}
-            // onChange={handleSearchChange}
+            onChange={handleSearchChange}
           />
         </div>
         <div>
@@ -210,13 +209,13 @@ export default connect(
 export async function getStaticProps() {
   //call an external API endpoint to get posts
   const res = await axios.get('http://localhost:7000/books')
-  const filteredBooks = res.data;
+  const filterFriends = res.data;
   //eeeee
  
-  //return filteredBooks as prop to component
+  //return filterFriends as prop to component
   return {
     props: {
-      filteredBooks,
+      filterFriends,
     },
   }
 }
