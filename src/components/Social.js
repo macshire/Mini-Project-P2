@@ -17,6 +17,7 @@ import { SEARCH_BOOK } from "../constants/actionTypes";
 import booksData from "../data/booksData";
 import axios from "axios";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
+import Modal from 'react-bootstrap/Modal';
 
 
 const Social = () => {
@@ -25,6 +26,19 @@ const Social = () => {
   const [age, setAge] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [show, setShow] = useState(false);
+  const [username, setUsername] = useState('');
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handleClose = () => {
+    setShow(false); 
+  }
+
+  const handleShow = () => {
+    setShow(true);
+  }
 
   //DB, getting books from DB
   useEffect(() => {
@@ -103,56 +117,41 @@ const Social = () => {
     setSearchTerm(event.target.value);
   }
 
-    const booksPerPage = 4;
-    const totalBooks = friends.length;
-    const [currentIndex, setCurrentIndex] = useState(0);
-  
-    const moveSlides = (direction) => {
-      console.log("ARROW CLICKED");
-  
-      //getting max page index, -1 because starts from 0
-      const maxIndex = Math.ceil(totalBooks / booksPerPage) - 1;
-      let newIndex = currentIndex + direction;
-  
-      //ensure the newIndex wraps around when going out of bounds
-      if (newIndex < 0) {
-        //wraps to last page if trying to go backward on first page
-        newIndex = maxIndex;
-      } else if (newIndex > maxIndex) {
-        //wraps to first page if trying to go forward on last page
-        newIndex = 0;
-      }
-      //update newIndex state
-      setCurrentIndex(newIndex);
-      //setting amount to slide the books (adjust the shiftAmount)
-      const shiftAmount = newIndex * 2.78;
-      const bookWrapper = document.querySelector('.books-wrapper');
-      if (bookWrapper) {
-        //updating transform of bookWrapper, controls the 'sliding' effect 
-        bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
-      }
-  };
-
-
-
   return (
     <>
       <head>
         <link rel="stylesheet" type="text/css" href="App.css"/>
         <script defer src='activePage.js'></script>
       </head> 
+      <Modal show={show} onHide={handleClose} className="modalContainer">
+        <div className="modalContent">
+            <div className="modalHeader">
+              Register
+              <button onClick={handleClose} id="xButton">
+                &times;
+              </button>
+            </div>
+          <div className="modalBody">
+            <label className="modalText">Username:</label>
+            <input className="modalInput" value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />
+          </div>
+          <div className="modalFooter">
+            <button className="button" onClick={handleClose}>Close</button>
+          </div>
+        </div>
+      </Modal>
       <div id="social">
         <div id="titleBackground">
           <div id="titleName">
             <p>Social</p>
           </div>
           <div id="titleWords">
-            <p>Discuss with fellow friend worms</p>
+            <p>Discuss with fellow book worms</p>
           </div>
         </div>
         <div className="headerBorder">
         <div className="dropDownContainer">
-            <InputLabel id="dropDownLabel">Genre</InputLabel>
+            <InputLabel id="dropDownLabel">Filter</InputLabel>
             <Select 
               labelId="dropDownLabel"
               id="dropDown"
@@ -205,19 +204,18 @@ export default connect(
   mapDispatchToProps
 )(Social);
 
-//Static Site Generation (SSG)
-export async function getStaticProps() {
-  //call an external API endpoint to get posts
-  const res = await axios.get('http://localhost:7000/books')
-  const filterFriends = res.data;
-  //eeeee
+// //Static Site Generation (SSG)
+// export async function getStaticProps() {
+//   //call an external API endpoint to get posts
+//   const res = await axios.get('http://localhost:7000/users')
+//   const filterFriends = res.data;
  
-  //return filterFriends as prop to component
-  return {
-    props: {
-      filterFriends,
-    },
-  }
-}
+//   //return filterFriends as prop to component
+//   return {
+//     props: {
+//       filterFriends,
+//     },
+//   }
+// }
 
 //export default Home;

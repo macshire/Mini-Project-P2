@@ -94,6 +94,10 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
           }
         })
     };
+
+    const handleChat = () => {
+      alert("Chat open");
+    }
   
     /* layout of the UI when displaying the state from the store */
     return (
@@ -107,6 +111,7 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
                 <span>{username}</span>
             </div>
             </div>
+            <button id='chatButton' onClick={handleChat}>Chat</button>
         </div> 
     );
   }
@@ -118,7 +123,7 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
     type = 'button',
     children
   }) =>
-    <button id='bookMark'
+    <button id='chatButton'
       type={type}
       className="button-inline"
       onClick={onClick}

@@ -114,6 +114,7 @@ const handlePasswordChange = (event) => {
 
 const handleEmailChange = (event) => {
   setEmail(event.target.value);
+  console.log(event.target.value);
 }
 
 // const handleCreateAccount = () => {
@@ -199,7 +200,7 @@ const handleCreateAccount = async () => {
     });
     fetchUsers();
   } catch (error) {
-    console.error("Error creating account", error);
+    console.error("Error creating account", error.message);
   }
 };
 
@@ -387,14 +388,17 @@ useEffect(() => {
             </div>
           <div className="modalBody">
             <label className="modalText">Email:</label>
+            <br></br>
             <input className="modalInput" value={email} onChange={handleEmailChange} placeholder="eg. user@gmail.com" />
           </div>
           <div className="modalBody">
             <label className="modalText">Username:</label>
+            <br></br>
             <input className="modalInput" value={username} onChange={handleUsernameChange} placeholder="Name that will be seen by others." />
           </div>
           <div className="modalBody">
             <label className="modalText">Password:</label>
+            <br></br>
             <input className="modalInput" type="password" id="pwInput" value={password} onChange={handlePasswordChange} placeholder="1 Caps, 1 Number, 1 Symbol, minimum 10 characters." />
             {passwordVisible ? (
               <>
@@ -417,6 +421,7 @@ useEffect(() => {
               </>
             )}
           </div>
+          <br></br>
           <div className="modalFooter">
             <button className="button" onClick={handleClose}>Close</button>
             {registerPressed? (
