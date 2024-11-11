@@ -6,9 +6,11 @@ import { render } from '@testing-library/react';
 import BookMark from '../BookMark';
 import axios from 'axios';
 import { useState } from 'react';
+import { isSignInWithEmailLink } from 'firebase/auth';
 
 const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
 
+  const [show, setshow] = useState(false);
   const navigate = useNavigate();
 
     const {
@@ -20,7 +22,7 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
       navigate(`/about/${id}`);
       // onReview(id);
     }
-    
+
     // const handleArchive = (id) => {
     //   //store archived book in localStorage
     //   let archivedBooks = JSON.parse(localStorage.getItem('archivedBooks')) || [];
@@ -96,7 +98,7 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
     };
 
     const handleChat = () => {
-      alert("Chat open");
+      setshow(true);
     }
   
     /* layout of the UI when displaying the state from the store */
@@ -112,6 +114,7 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
             </div>
             </div>
             <button id='chatButton' onClick={handleChat}>Chat</button>
+            <Outlet context={{username, show}}/>
         </div> 
     );
   }

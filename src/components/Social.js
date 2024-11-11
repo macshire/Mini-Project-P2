@@ -18,6 +18,7 @@ import booksData from "../data/booksData";
 import axios from "axios";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 import Modal from 'react-bootstrap/Modal';
+import { useOutletContext } from "react-router-dom";
 
 
 const Social = () => {
@@ -25,8 +26,9 @@ const Social = () => {
   const [friends, setFriends] = useState([]);
   const [age, setAge] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useOutletContext();
   const [username, setUsername] = useState('');
+  const [secondUsername, setSecondUsername] = useOutletContext();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -36,9 +38,13 @@ const Social = () => {
     setShow(false); 
   }
 
-  const handleShow = () => {
-    setShow(true);
+  if (show === true){
+    alert("Chat open");
   }
+  
+  // const handleShow = () => {
+  //   setShow(true);
+  // }
 
   //DB, getting books from DB
   useEffect(() => {

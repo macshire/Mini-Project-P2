@@ -439,6 +439,7 @@ body {
 .modalFooter {
   display: flex;
   justify-content: flex-end;
+  /* margin-right: 1vw; */
 }
 
 #xButton {
