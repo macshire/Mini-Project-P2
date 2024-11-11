@@ -26,9 +26,12 @@ const Social = () => {
   const [friends, setFriends] = useState([]);
   const [age, setAge] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const [show, setShow] = useOutletContext();
+  const context = useOutletContext();
+  // Destructure based on what the context actually provides
+  const show = context.show;
+  const setShow = context.setShow;
   const [username, setUsername] = useState('');
-  const [secondUsername, setSecondUsername] = useOutletContext();
+  // const [secondUsername, setSecondUsername] = useOutletContext();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -50,13 +53,18 @@ const Social = () => {
   useEffect(() => {
     axios.get('http://localhost:7000/users')
       .then(response => {
-        setFriends(response.data); // Update state with the user data
-        console.log("setBooks = " + response.data);
+        const data = response.data;
+        if (Array.isArray(data)) {
+          setFriends(data);
+        } else {
+          console.error('Expected an array but got:', data);
+        }
       })
       .catch(error => {
-        //console.error('There was an error fetching the users!', error);
+        console.error('There was an error fetching the users!', error);
       });
-  }, [])
+  }, []);
+  
 
   //DB, filtering books based on DB
   useEffect(() => {
