@@ -575,3 +575,6 @@ coverage-final.json
 mono_crash.*
 .idea/
 .vscode/
+
+# Node.js dependencies
+node_modules/
