@@ -18,7 +18,8 @@ import booksData from "../data/booksData";
 import axios from "axios";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 import Modal from 'react-bootstrap/Modal';
-import { useOutletContext } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
+import { useShow } from "./Socials";
 
 
 const Social = () => {
@@ -28,8 +29,10 @@ const Social = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const context = useOutletContext();
   // Destructure based on what the context actually provides
-  const show = context.show;
-  const setShow = context.setShow;
+  // const show = context.show;
+  // const setShow = context.setShow;
+  const {show} = useOutletContext;
+  const {setShow} = useOutletContext;
   const [username, setUsername] = useState('');
   // const [secondUsername, setSecondUsername] = useOutletContext();
 
@@ -41,10 +44,11 @@ const Social = () => {
     setShow(false); 
   }
 
-  if (show === true){
-    alert("Chat open");
-  }
-  
+  useEffect(() => {
+    console.log("IT CHANGED");
+  }, [show])
+
+
   // const handleShow = () => {
   //   setShow(true);
   // }
@@ -201,6 +205,7 @@ const Social = () => {
         <Friends friends={friends} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
       </div>
       </div>
+      <Outlet context={{username, show, setShow}}/>
       </>
   );
 }

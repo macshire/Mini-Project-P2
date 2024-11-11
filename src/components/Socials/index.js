@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import '../Home.css';
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useOutletContext } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import BookMark from '../BookMark';
@@ -10,7 +10,7 @@ import { isSignInWithEmailLink } from 'firebase/auth';
 
 const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
 
-  const [show, setshow] = useState(false);
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
     const {
@@ -98,7 +98,9 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
     };
 
     const handleChat = () => {
-      setshow(true);
+      alert('PRESSED CHAT')
+      setShow(true);
+      console.log(show)
     }
   
     /* layout of the UI when displaying the state from the store */
@@ -114,7 +116,7 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
             </div>
             </div>
             <button id='chatButton' onClick={handleChat}>Chat</button>
-            <Outlet context={{username, show}}/>
+            <Outlet context={{username, show, setShow}}/>
         </div> 
     );
   }
@@ -133,5 +135,9 @@ const Friend = ({ friend, onArchive, onReview, onRemoveArchive}) => {
     >
       {children}
     </button>
+
+  export function useShow() {
+    return useOutletContext;
+  }
 
   export default Friend;
