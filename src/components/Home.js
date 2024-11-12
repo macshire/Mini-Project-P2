@@ -204,7 +204,7 @@ const Home = ({ filteredBooks }) => {
         <link rel="stylesheet" type="text/css" href="App.css"/>
         <script defer src='activePage.js'></script>
       </head> 
-      <div id="profile">
+      <div id="home">
         <div id="titleBackground">
           <div id="titleName">
             <p>Sách sâu</p>
@@ -213,32 +213,34 @@ const Home = ({ filteredBooks }) => {
             <p>Create your own library</p>
           </div>
         </div>
-        <div className="headerBorder">
-        <div className="dropDownContainer">
-            <InputLabel id="dropDownLabel">Genre</InputLabel>
-            <Select 
-              labelId="dropDownLabel"
-              id="dropDown"
-              value={age}
-              label="Age"
-              onChange={handleChange}
-            >
-              <MenuItem value={'All'}>All</MenuItem>
-              <MenuItem value={'Adventure'}>Adventure</MenuItem>
-              <MenuItem value={'Children'}>Children</MenuItem>
-              <MenuItem value={'Fantasy'}>Fantasy</MenuItem>
-              <MenuItem value={'Romance'}>Romance</MenuItem>
-              <MenuItem value={'Literature'}>Literature</MenuItem>
-            </Select>
-            </div>
-        <span className="headerText">Browse</span>
-        <input
-            type="text"
-            id='searchBar'
-            placeholder="Find a book for yourself!"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
+        <div id="header">
+          <div className="headerBorder">
+          <div className="dropDownContainer">
+              <InputLabel id="dropDownLabel">Genre</InputLabel>
+              <Select 
+                labelId="dropDownLabel"
+                id="dropDown"
+                value={age}
+                label="Age"
+                onChange={handleChange}
+              >
+                <MenuItem value={'All'}>All</MenuItem>
+                <MenuItem value={'Adventure'}>Adventure</MenuItem>
+                <MenuItem value={'Children'}>Children</MenuItem>
+                <MenuItem value={'Fantasy'}>Fantasy</MenuItem>
+                <MenuItem value={'Romance'}>Romance</MenuItem>
+                <MenuItem value={'Literature'}>Literature</MenuItem>
+              </Select>
+              </div>
+          {/* <span className="headerText">Browse</span> */}
+          <input
+              type="text"
+              id='searchBar'
+              placeholder="Find a book for yourself!"
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
         </div>
         <div>
           {/* conditionally renders the message */}
@@ -246,7 +248,7 @@ const Home = ({ filteredBooks }) => {
       </div>
       <div className="homepageBody">
         <div className="header2Text">
-          All
+          Books
         </div>
         <div class="scroll-container">
           <a class="prev" onClick={() => moveSlides(-1)}>❮</a>
@@ -261,6 +263,9 @@ const Home = ({ filteredBooks }) => {
               ))}
             </div>
           </div>
+        </div>
+        <div className="header2Text">
+          Authors
         </div>
         <span className='flex-container'>
           <Book stories={books} onArchive={id => store.dispatch({type: STORY_ARCHIVE, id})} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
