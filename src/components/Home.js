@@ -233,6 +233,7 @@ const Home = ({ filteredBooks }) => {
               </Select>
               </div>
           {/* <span className="headerText">Browse</span> */}
+          <img id="searchIcon"></img>
           <input
               type="text"
               id='searchBar'

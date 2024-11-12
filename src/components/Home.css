@@ -58,7 +58,7 @@
 /* background blender image */
 #titleBackground {
   z-index: -10;
-  height: 28vw;
+  height: 24vw;
   background-image: url('https://img.freepik.com/free-photo/ancient-books-adorn-library-carefully-arranged-with-classics-rare-gems_157027-2575.jpg');
   background-size: contain;
   /* background-image: url('https://media.licdn.com/dms/image/v2/D4D16AQF9Khhlg2kEtw/profile-displaybackgroundimage-shrink_200_800/profile-displaybackgroundimage-shrink_200_800/0/1715758260542?e=2147483647&v=beta&t=HzXxUo-U8g-e4oBHRNRZyqsGEG1uLf1x3gc_CT_g1HQ'); */
@@ -73,7 +73,7 @@
 /* big name at the top */
 #titleName {
   position: absolute;
-  font-size: 9vw;
+  font-size: 8vw;
   margin: 0;
   padding: 0;
   top: 50%;
@@ -90,7 +90,7 @@
 /* short desc below titleName */
 #titleWords {
   position: absolute;
-  font-size: 2.5vw;
+  font-size: 2.3vw;
   margin: 0;
   padding: 0;
   top: 75%;
@@ -133,6 +133,7 @@ li a:is(:link, :active, :visited) {
   background-blend-mode: multiply;
   transform: translateX(-0.5vw);
   font-family: "Bebas Neue", sans-serif;
+  transform: translateX(32vw);
 }
 
 /* changes color of box if hovering */
@@ -291,9 +292,9 @@ body {
 
 .headerBorder {
   border: solid;
-  border-color: rgb(20, 65, 42);
+  border-color: rgb(27, 50, 38);
   border-width: 0.4vw;
-  background-color: rgb(27, 88, 58);
+  background-color: rgb(32, 72, 52);
   height: 9vw;
   width: 77vw;
   margin-left: auto;
@@ -337,12 +338,17 @@ body {
   transform: translate(850%); 
   display: inline-block;
   transform: translateX(50vw);
-  margin-top: 0.6vw;
+  margin-top: 1.4vw;
+}
+
+#dropDown {
+  color:  rgb(0, 0, 0);
+  background-color:  rgb(255, 255, 255);
 }
 
 #dropDownLabel {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 3vw;
+  font-size: 2vw;
   color: rgb(212, 175, 106);
 }
 
@@ -353,11 +359,15 @@ body {
 
 #searchBar {
   width: 24vw;
-  height: 3vw;
-  transform: translateY(-1.8vw);
-  font-size: 1.4vw;
+  height: 2vw;
+  transform: translateY(-1.4vw);
+  font-size: 1.2vw;
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 0.5vw;
+}
+
+#searchIcon {
+  src: url("https://github.com/macshire/Mini-Project-P2/blob/main/searchIcon.png?raw=true");
 }
 
 #bookMark {
@@ -380,14 +390,14 @@ body {
 }
 
 .navButtons {
-  width: 7vw;
-  height: 2.4vw;
+  width: 6vw;
+  height: 2vw;
   display: inline-block;
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   border-radius: 4px;
   margin-right: 0.8vw;
   background-color: rgb(255, 255, 255);
-  transform: translateX(6vw);
+  transform: translateX(8vw);
 }
 
 .navButtons :hover {
@@ -564,9 +574,10 @@ body {
   /* background-color: rgb(0, 0, 0); */
   /* background-color: rgb(27, 22, 20); */
   border: solid;
-  border-color: rgb(20, 65, 42);
+  /* border-color: rgb(20, 65, 42); */
+  border-color: rgb(27, 50, 38);
   border-width: 0.4vw;
-  background-color: rgb(27, 88, 58);
+  background-color: rgb(32, 72, 52);
   align-items: center;
   width: 76.8vw;
   transform: translateY(3vw);

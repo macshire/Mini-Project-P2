@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client"
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import "./Home.css";
 import "./Layout";
+import "./Socials/index"
 import Friends from "./Socials/Friends";
 import { connect } from 'react-redux';
 import store from "../store";

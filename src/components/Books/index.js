@@ -24,6 +24,7 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
     } = story;
 
     const handleClick = (id) => {
+      //change to navigate to a about page with comments, then review button
       navigate(`/about/${id}`);
       // onReview(id);
     }
