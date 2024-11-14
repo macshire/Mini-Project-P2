@@ -51,7 +51,7 @@ const Descriptions = (props) => {
 
         const comments = response.data;
 
-        const filteredComments = reviews.filter(review => review.bookID === props.id);
+        const filteredComments = comments.filter(review => review.bookID === props.id);
         // Set the sorted books to state
         setComments(filteredComments);
   
