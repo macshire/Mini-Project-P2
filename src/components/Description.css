@@ -1,0 +1,182 @@
+#AboutHeader {
+    position: relative;
+    background-image: url("https://i.imgur.com/auK7xRu.jpeg");
+    background-position: 0% 40%;
+  
+  
+    height: 15vw;
+    z-index: -10;
+    font-size: 1vw;
+    border: 4px solid #000000;
+    
+  }
+  
+  #AppHeaderfont {
+    font-size: 6vw;
+    transform: translate(50, 50);
+    color: rgb(255, 255, 255);
+    padding-top: 3vw;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Times New Roman', Times, serif;
+    z-index: 0;
+  }
+  
+  h2.about {
+    color: white;
+  }
+  
+  #Checkbox {
+  
+    margin-left: 10%;
+    margin-top: 5vw;
+    scale: 140%;
+    
+  }
+  
+  .css-dmmspl-MuiFormGroup-root {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: fit-content;
+  }
+  
+  .abc > span:last-child {
+    font-size: 1.5vw;
+  }
+  
+  .css-1edfpdg-MuiTypography-root {
+    margin: 0;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 2.5;
+    letter-spacing: 0.00938em;
+  }
+  
+  .square {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  }
+  
+  .app {
+  margin-left: 10%;
+  }
+  
+  .reviews{
+  padding: 0;
+  
+  }
+  
+  .reviewTitle{
+  position: relative;
+  padding-left: 1vw;
+  font-size: 2vw;
+  width: fit-content ;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  }
+  
+  .rateStyle{
+  position: relative;
+  
+  width: fit-content;
+  
+  }
+  .reviewImage{
+  display: inline;
+  position: relative;
+  width: 20vw;
+  border-radius: 4%;
+  margin-top: 0;
+  }
+  
+  a:is(:link, :active, :visited){
+  color: #000000;
+  }
+  
+  
+  .flex-container-about {
+  
+  position: absolute;
+  background-color: rgb(43, 75, 57);
+  
+  
+  }
+  
+  .reviewBig{
+  align-content: center;
+  margin-left: 0vw;
+  
+  padding: fit-content;
+  display: flex;
+  
+  
+  }
+  
+  #p-title{
+  font-weight: bold;
+  }
+  
+  .ABheaderText {
+  font-size: 8vw;
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 0.5vw;
+  margin-left: 3vw;
+  margin-bottom: 0vw;
+  color:  rgb(212, 175, 106);
+  display: inline-block;
+  }
+  
+  .backgroundE {
+    position: absolute;
+    align-items: center;
+    overflow: hidden;
+  
+  
+  }
+  
+  body {
+    background-color: rgb(43, 75, 57);
+  }
+  
+  .tester {
+    background-color: rgb(43, 75, 57);
+  }
+  
+  .review-container {
+    border: solid;
+    width: fit-content;
+    margin-left: 18vw;
+    color: white;
+    border: solid;
+    border-color: rgb(114, 83, 54);
+  
+    background-color: rgb(212, 175, 106);
+    border-width: 0.4vw;
+    align-items: center;
+    border-radius: 2%;    
+    padding: 1%;
+  }
+  
+  #reviewText {
+    margin-top: 2vw;
+    height: 10vw;
+    
+    text-align: top;
+  }
+  #reviewButton {
+    background-color: #1f613c;
+  }

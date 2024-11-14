@@ -8,6 +8,7 @@ import BookMark from "./BookMark";
 import { useEffect } from "react";
 import booksData from "../data/booksData";
 import Social from "./Social";
+import Descriptions from "./Descriptions";
 
 
 <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home />} />
+          <Route path="descriptions/:id" element={<Descriptions />} />
           <Route path="about/:id" element={<About />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="bookmark" element={<BookMark />} />
