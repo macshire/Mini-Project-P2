@@ -107,17 +107,11 @@ const Description = ({ review, users}) => {
         <div className='reviewTitle'>
           <div className='reviewTitle'>
             <p id='p-title'>{title}</p>
-            <p>{author}</p>
+            <p id='p-author'>{author}</p>
           </div>
-          <textarea
-            col ="30"
-            rows="20"
-            type="text"
-            id='reviewText'
-            placeholder="Leave a Review!"
-            value={reviewText}
-            onChange={handleTextChange}
-          />
+          {/* replace textarea with description of the book */}
+          <p id='p-author'>Description goes here blah blah blah</p>
+          {/* can convert rating into avrg star rating and put a button to go to about page for review*/}
           <div className = "rateStyle">
             <Rate 
             starR = {newRating}
@@ -125,7 +119,11 @@ const Description = ({ review, users}) => {
             >  
             </Rate>
           </div>
-          <button id="reviewButton" onClick={handleCreateReview}>Save</button>
+          {/* convert to button to go to review page */}
+          <button id="reviewButton">Review</button>
+          <div>
+            {/* insert section for comments on that specific book */}
+          </div>
         </div>
       </div>
 

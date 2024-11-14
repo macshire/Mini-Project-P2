@@ -68,11 +68,7 @@
   background-color: red;
   }
   
-  .app {
-  margin-left: 10%;
-  }
-  
-  .reviews{
+  .reviews {
   padding: 0;
   
   }
@@ -89,16 +85,16 @@
   
   }
   
-  .rateStyle{
+  .rateStyle {
   position: relative;
   
   width: fit-content;
   
   }
-  .reviewImage{
+  .reviewImage {
   display: inline;
   position: relative;
-  width: 20vw;
+  width: 25vw;
   border-radius: 4%;
   margin-top: 0;
   }
@@ -109,25 +105,25 @@
   
   
   .flex-container-about {
-  
   position: absolute;
   background-color: rgb(43, 75, 57);
-  
-  
   }
   
   .reviewBig{
   align-content: center;
   margin-left: 0vw;
-  
   padding: fit-content;
   display: flex;
-  
-  
   }
   
-  #p-title{
+  #p-title {
   font-weight: bold;
+  font-size: 4vw;
+  transform: translateY(-3vw);
+  }
+
+  #p-author {
+    transform: translateY(-6vw);
   }
   
   .ABheaderText {
@@ -144,8 +140,6 @@
     position: absolute;
     align-items: center;
     overflow: hidden;
-  
-  
   }
   
   body {
@@ -157,20 +151,35 @@
   }
   
   .review-container {
-    border: solid;
-    width: fit-content;
-    margin-left: 18vw;
-    color: white;
+    position: relative;
+    overflow: hidden; 
+    white-space: nowrap;
     border: solid;
     border-color: rgb(114, 83, 54);
-  
-    background-color: rgb(212, 175, 106);
     border-width: 0.4vw;
+    background-color: rgb(212, 175, 106);
     align-items: center;
-    border-radius: 2%;    
-    padding: 1%;
-  }
-  
+    transform: translateY(4vw);
+    border-radius: 1vw;
+    width: 74vw; /* Adjust or set your desired width */
+    margin: 0 auto; /* Centers the container horizontally */
+    margin-bottom: 4vw;
+}
+
+.headerTextDesc {
+  font-size: 5vw;
+  font-family: "Bebas Neue", sans-serif;
+  color: rgb(212, 175, 106);
+  text-decoration: underline;
+  background-color: rgb(43, 75, 57);
+  transform: translateY(3vw);
+  /* Centering styles */
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center; /* This ensures text content is centered within the block element */
+}
+
   #reviewText {
     margin-top: 2vw;
     height: 10vw;

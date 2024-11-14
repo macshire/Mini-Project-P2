@@ -1,5 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import "./Description.css";
+import "./Home.css";
 import "./Layout";
 import Review from "./Reviews/Review";
 import Rate from "./Reviews/StarRating";
@@ -14,6 +15,7 @@ import Description from "./Description/Description";
 
 const Descriptions = (props) => {
   const { reviews } = props;
+  const [comments, setComments] = useState([]);
 
   // const [reviewItem, setReviewItem] = useState(null);
 
@@ -39,6 +41,25 @@ const Descriptions = (props) => {
       console.error('There was an error fetching the books!', error);
     });
   }, [pa.id, reviews.length]);
+  
+  //getting and setting reviews based on bookID of review and id of prop
+  useEffect(() => {
+    //axios get reviews, set review if bookID of review = id of book selected
+    //reviews will show up  in the review section
+    axios.get('http://localhost:7000/reviews')
+      .then(response => {
+
+        const comments = response.data;
+
+        const filteredComments = reviews.filter(review => review.bookID === props.id);
+        // Set the sorted books to state
+        setComments(filteredComments);
+  
+      })
+      .catch(error => {
+        console.error('There was an error fetching the reviews!', error);
+      });
+  })
 
 
  return (
@@ -50,14 +71,17 @@ const Descriptions = (props) => {
      <div id="about">
         <div id="titleBackground">
             <div id="titleName">
-                <p>「✦ Book reviews ✦」</p>
+                <p>Description</p>
             </div>
        </div>
-       <div className="headerBorder">
-            <p className="ABheaderText">Review</p>
-        </div>
         <div className="tester">
             <Description reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+        </div>
+        <div className="headerTextDesc">
+          Reviews
+        </div>
+        <div>
+          {/* component for layout of comments */}
         </div>
         {/* <span className="backgroundE">
          <Review reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>

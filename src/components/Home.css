@@ -58,7 +58,7 @@
 /* background blender image */
 #titleBackground {
   z-index: -10;
-  height: 24vw;
+  height: 18vw;
   background-image: url('https://img.freepik.com/free-photo/ancient-books-adorn-library-carefully-arranged-with-classics-rare-gems_157027-2575.jpg');
   background-size: contain;
   /* background-image: url('https://media.licdn.com/dms/image/v2/D4D16AQF9Khhlg2kEtw/profile-displaybackgroundimage-shrink_200_800/profile-displaybackgroundimage-shrink_200_800/0/1715758260542?e=2147483647&v=beta&t=HzXxUo-U8g-e4oBHRNRZyqsGEG1uLf1x3gc_CT_g1HQ'); */
@@ -93,7 +93,7 @@
   font-size: 2.3vw;
   margin: 0;
   padding: 0;
-  top: 75%;
+  top: 85%;
   left: 50%;
   color:rgb(231, 222, 204);
   transform: translate(-50%, -50%);
