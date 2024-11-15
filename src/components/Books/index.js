@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import BookMark from '../BookMark';
 import axios from 'axios';
-import { useState } from 'react';
+import React, { useEffect, useState, createContext, useContext } from 'react';
 
 const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
-
+  const [bookDesc, setBookDesc] = useState([]);
+  const [clickedId, setClickedId] = useState(null);
   const navigate = useNavigate();
 
     const {
@@ -24,11 +25,33 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
     } = story;
 
     const handleClick = (id) => {
-      //change to navigate to a about page with comments, then review button
-      // navigate(`/about/${id}`);
+      // Store the clicked ID
+      setClickedId(id);
       navigate(`/descriptions/${id}`);
-      // onReview(id);
-    }
+    };
+    
+    useEffect(() => {
+      if (clickedId !== null) { // Ensure clickedId is defined before making the request
+        axios.get('http://localhost:7000/books')
+          .then(response => {
+            const storedBooks = response.data;
+    
+            // Find the book with the matching objectID
+            const book = storedBooks.find(book => book.objectID === clickedId);
+    
+            // Set the matching book to state
+            if (book) {
+              setBookDesc(book);
+              console.log("BOOK SET TO ", book);
+            } else {
+              console.error('Book not found');
+            }
+          })
+          .catch(error => {
+            console.error('Error setting bookDesc', error);
+          });
+      }
+    }, [clickedId]); // Use clickedId as a dependency
     
     // const handleArchive = (id) => {
     //   //store archived book in localStorage
@@ -127,6 +150,7 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
             </ButtonInline>
         </div>
       </div>
+      <Outlet context={bookDesc}/>
       </div>  
     );
   }

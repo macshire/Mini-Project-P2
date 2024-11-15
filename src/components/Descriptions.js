@@ -11,11 +11,23 @@ import { connect } from 'react-redux';
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Description from "./Description/Description";
+import ProfileReview from "./Profiles/ProfileReviews";
+import { useOutletContext } from 'react-router-dom';
 // import { withRouter } from "react-router-dom";
 
 const Descriptions = (props) => {
   const { reviews } = props;
   const [comments, setComments] = useState([]);
+  const [books, setBooks] = useState([]);
+  const [refresh, setRefresh]= useState(null)
+  const [bookDesc] = useOutletContext();
+  const updateFromDelete = (data) => {
+    axios.get('http://localhost:7000/books')
+      .then(response => {
+        setRefresh(data)
+        setBooks(response.data);
+  })
+  }
 
   // const [reviewItem, setReviewItem] = useState(null);
 
@@ -35,7 +47,6 @@ const Descriptions = (props) => {
 
       // Set the sorted books to state
       setReviewedBooks(book);
-
     })
     .catch(error => {
       console.error('There was an error fetching the books!', error);
@@ -44,22 +55,19 @@ const Descriptions = (props) => {
   
   //getting and setting reviews based on bookID of review and id of prop
   useEffect(() => {
-    //axios get reviews, set review if bookID of review = id of book selected
-    //reviews will show up  in the review section
     axios.get('http://localhost:7000/reviews')
       .then(response => {
-
         const comments = response.data;
-
-        const filteredComments = comments.filter(review => review.bookID === props.id);
-        // Set the sorted books to state
-        setComments(filteredComments);
-  
+        // Guard for bookDesc being valid
+        if (bookDesc && bookDesc.id) {
+          const filteredComments = comments.filter(review => review.bookID === bookDesc.id);
+          setComments(filteredComments);
+        }
       })
       .catch(error => {
         console.error('There was an error fetching the reviews!', error);
       });
-  })
+  }, [bookDesc]);
 
 
  return (
@@ -82,6 +90,12 @@ const Descriptions = (props) => {
         </div>
         <div>
           {/* component for layout of comments */}
+          <div>
+              <ProfileReview
+              profileReviews = {comments}
+              refresh={updateFromDelete}
+              books = {books} />
+            </div>
         </div>
         {/* <span className="backgroundE">
          <Review reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>

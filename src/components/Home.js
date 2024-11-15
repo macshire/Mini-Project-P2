@@ -215,7 +215,7 @@ const Home = ({ filteredBooks }) => {
         </div>
         <div id="header">
           <div className="headerBorder">
-          <div className="dropDownContainer">
+            <div className="dropDownContainer">
               <InputLabel id="dropDownLabel">Genre</InputLabel>
               <Select 
                 labelId="dropDownLabel"
@@ -231,7 +231,7 @@ const Home = ({ filteredBooks }) => {
                 <MenuItem value={'Romance'}>Romance</MenuItem>
                 <MenuItem value={'Literature'}>Literature</MenuItem>
               </Select>
-              </div>
+            </div>
           {/* <span className="headerText">Browse</span> */}
           <img id="searchIcon"></img>
           <input
