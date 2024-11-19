@@ -21,6 +21,7 @@ const ProfileReview = ({ profileReviews, refresh, books}) =>
             book={x}
             />
         )} */}
-    </div>}
+    </div>
+    }
 
   export default ProfileReview;

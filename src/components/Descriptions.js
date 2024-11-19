@@ -13,6 +13,7 @@ import axios from "axios";
 import Description from "./Description/Description";
 import ProfileReview from "./Profiles/ProfileReviews";
 import { useOutletContext } from 'react-router-dom';
+import Story from './Books';
 // import { withRouter } from "react-router-dom";
 
 const Descriptions = (props) => {
@@ -20,7 +21,8 @@ const Descriptions = (props) => {
   const [comments, setComments] = useState([]);
   const [books, setBooks] = useState([]);
   const [refresh, setRefresh]= useState(null)
-  const [bookDesc] = useOutletContext();
+  const outletContext = useOutletContext();
+  const bookDesc = outletContext ? outletContext[0] : {}; 
   const updateFromDelete = (data) => {
     axios.get('http://localhost:7000/books')
       .then(response => {
@@ -43,10 +45,11 @@ const Descriptions = (props) => {
     .then(response => {
       const storedBooks = response.data;
     
-      const book = storedBooks.find(book => book.objectID == pa.id);
+      const book = storedBooks.find(book => book.objectID == bookDesc.objectID);
 
       // Set the sorted books to state
-      setReviewedBooks(book);
+      //fallback to empty array
+      setReviewedBooks(book || []);
     })
     .catch(error => {
       console.error('There was an error fetching the books!', error);
@@ -58,16 +61,19 @@ const Descriptions = (props) => {
     axios.get('http://localhost:7000/reviews')
       .then(response => {
         const comments = response.data;
-        // Guard for bookDesc being valid
+        // Guard condition for bookDesc
         if (bookDesc && bookDesc.id) {
           const filteredComments = comments.filter(review => review.bookID === bookDesc.id);
           setComments(filteredComments);
+        } else {
+          console.warn("bookDesc is not defined or missing id");
         }
       })
       .catch(error => {
         console.error('There was an error fetching the reviews!', error);
       });
   }, [bookDesc]);
+  
 
 
  return (
@@ -83,7 +89,8 @@ const Descriptions = (props) => {
             </div>
        </div>
         <div className="tester">
-            <Description reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+          <Description reviews={Array.isArray(reviewedBooks) ? reviewedBooks : []} onReview={id => store.dispatch({ type: REVIEW_BOOK, id })} />
+            {/* <Description reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/> */}
         </div>
         <div className="headerTextDesc">
           Reviews
@@ -91,11 +98,11 @@ const Descriptions = (props) => {
         <div>
           {/* component for layout of comments */}
           <div>
-              <ProfileReview
-              profileReviews = {comments}
-              refresh={updateFromDelete}
-              books = {books} />
-            </div>
+            <ProfileReview
+            profileReviews={Array.isArray(comments) ? comments : []}
+            refresh={updateFromDelete}
+            books = {books} />
+          </div>
         </div>
         {/* <span className="backgroundE">
          <Review reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>

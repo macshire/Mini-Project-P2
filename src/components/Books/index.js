@@ -9,6 +9,7 @@ import React, { useEffect, useState, createContext, useContext } from 'react';
 
 const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
   const [bookDesc, setBookDesc] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
   const [clickedId, setClickedId] = useState(null);
   const navigate = useNavigate();
 
@@ -26,7 +27,9 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
 
     const handleClick = (id) => {
       // Store the clicked ID
+      setIsClicked(true)
       setClickedId(id);
+      console.log("clickedID = " + id);
       navigate(`/descriptions/${id}`);
     };
     
@@ -37,11 +40,13 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
             const storedBooks = response.data;
     
             // Find the book with the matching objectID
+            //PROBLEM
             const book = storedBooks.find(book => book.objectID === clickedId);
     
             // Set the matching book to state
             if (book) {
               setBookDesc(book);
+              setIsClicked(false)
               console.log("BOOK SET TO ", book);
             } else {
               console.error('Book not found');
@@ -150,7 +155,7 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
             </ButtonInline>
         </div>
       </div>
-      <Outlet context={bookDesc}/>
+      <Outlet context={bookDesc || {}}/>
       </div>  
     );
   }
