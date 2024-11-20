@@ -23,6 +23,7 @@ const Descriptions = (props) => {
   const [refresh, setRefresh]= useState(null)
   const outletContext = useOutletContext();
   const bookDesc = outletContext ? outletContext[0] : {}; 
+  // const book = outletContext ? outletContext[0] : {}; 
   const updateFromDelete = (data) => {
     axios.get('http://localhost:7000/books')
       .then(response => {
@@ -38,23 +39,32 @@ const Descriptions = (props) => {
 
   const [reviewedBooks, setReviewedBooks] = useState([]);
   
+  //every bookDesc change to book
+  
   useEffect(() => {
-    //get archived books from localStorage
-    // const storedBooks = JSON.parse(localStorage.getItem('books')) || [];
+    console.log("bookDesc = " + bookDesc);
+    if (!bookDesc || !bookDesc.objectID) {
+      console.warn("bookDesc or bookDesc.objectID is not available");
+      return; // Prevent further execution
+    }
+  
     axios.get('http://localhost:7000/books')
-    .then(response => {
-      const storedBooks = response.data;
-    
-      const book = storedBooks.find(book => book.objectID == bookDesc.objectID);
-
-      // Set the sorted books to state
-      //fallback to empty array
-      setReviewedBooks(book || []);
-    })
-    .catch(error => {
-      console.error('There was an error fetching the books!', error);
-    });
-  }, [pa.id, reviews.length]);
+      .then(response => {
+        const storedBooks = Array.isArray(response.data) ? response.data : [];
+        const book = storedBooks.find(book => book.objectID === bookDesc.objectID);
+  
+        if (book) {
+          setReviewedBooks(book);
+          console.log("REVIEWEDBOOK SET TO:", book);
+        } else {
+          console.error("Book not found for the given objectID");
+        }
+      })
+      .catch(error => {
+        console.error('There was an error fetching the books!', error);
+      });
+  }, [bookDesc, pa.id, reviews.length]); // Including bookDesc as a dependency
+  
   
   //getting and setting reviews based on bookID of review and id of prop
   useEffect(() => {
@@ -62,8 +72,8 @@ const Descriptions = (props) => {
       .then(response => {
         const comments = response.data;
         // Guard condition for bookDesc
-        if (bookDesc && bookDesc.id) {
-          const filteredComments = comments.filter(review => review.bookID === bookDesc.id);
+        if (bookDesc && bookDesc.objectID) {
+          const filteredComments = comments.filter(review => review.bookID === bookDesc.objectID);
           setComments(filteredComments);
         } else {
           console.warn("bookDesc is not defined or missing id");

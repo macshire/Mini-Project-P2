@@ -26,37 +26,67 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
     } = story;
 
     const handleClick = (id) => {
-      // Store the clicked ID
-      setIsClicked(true)
+      setIsClicked(true);
       setClickedId(id);
-      console.log("clickedID = " + id);
+      console.log("clickedId after click:", id);
+      
+      // Trigger the axios call here directly if immediate fetch is needed
+      axios.get('http://localhost:7000/books')
+        .then(response => {
+          const storedBooks = Array.isArray(response.data) ? response.data : [];
+          if (storedBooks.length === 0) {
+            console.warn("No books found in response data.");
+            return;
+          }
+          const book = storedBooks.find(book => String(book.objectID) === String(id));
+          if (book) {
+            setBookDesc(book);
+            console.log("BOOK SET TO:", book + "and bookDesc = " + bookDesc);
+          } else {
+            console.error('Book not found');
+          }
+        })
+        .catch(error => {
+          console.error('There was an error fetching the books!', error);
+        });
+    
       navigate(`/descriptions/${id}`);
     };
     
-    useEffect(() => {
-      if (clickedId !== null) { // Ensure clickedId is defined before making the request
-        axios.get('http://localhost:7000/books')
-          .then(response => {
-            const storedBooks = response.data;
     
-            // Find the book with the matching objectID
-            //PROBLEM
-            const book = storedBooks.find(book => book.objectID === clickedId);
+    // useEffect(() => {
+    //   if (!clickedId) return; // Early return if clickedId is invalid
     
-            // Set the matching book to state
-            if (book) {
-              setBookDesc(book);
-              setIsClicked(false)
-              console.log("BOOK SET TO ", book);
-            } else {
-              console.error('Book not found');
-            }
-          })
-          .catch(error => {
-            console.error('Error setting bookDesc', error);
-          });
-      }
-    }, [clickedId]); // Use clickedId as a dependency
+    //   console.log("clickedId:", clickedId);
+    
+    //   axios.get('http://localhost:7000/books')
+    //     .then(response => {
+    //       const storedBooks = Array.isArray(response.data) ? response.data : [];
+    
+    //       if (storedBooks.length === 0) {
+    //         console.warn("No books found in response data.");
+    //         return;
+    //       }
+    //       else {
+    //         console.warn("books found in response data.")
+    //       }
+          
+          
+    //       const book = storedBooks.find(book => String(book.objectID) === String(clickedId));
+    
+    //       if (book) {
+    //         setBookDesc(book);
+    //         console.log("BOOK SET TO:", book);
+    //       } else {
+    //         console.error('Book not found');
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.error('There was an error fetching the books!', error);
+    //     });
+    // }, [clickedId]);
+    
+
     
     // const handleArchive = (id) => {
     //   //store archived book in localStorage
@@ -155,7 +185,8 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
             </ButtonInline>
         </div>
       </div>
-      <Outlet context={bookDesc || {}}/>
+      <Outlet context={bookDesc}/>
+      {/* <Outlet context={book}/> */}
       </div>  
     );
   }
