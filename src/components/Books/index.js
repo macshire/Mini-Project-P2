@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import '../Home.css';
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useOutletContext } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import BookMark from '../BookMark';
@@ -12,6 +12,7 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
   const [isClicked, setIsClicked] = useState(false);
   const [clickedId, setClickedId] = useState(null);
   const navigate = useNavigate();
+  var selectedBook = null;
 
     const {
       title,
@@ -38,10 +39,10 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
             console.warn("No books found in response data.");
             return;
           }
-          const book = storedBooks.find(book => String(book.objectID) === String(id));
-          if (book) {
-            setBookDesc(book);
-            console.log("BOOK SET TO:", book + "and bookDesc = " + bookDesc);
+          selectedBook = storedBooks.find(selectedBook => String(selectedBook.objectID) === String(id));
+          if (selectedBook) {
+            setBookDesc(selectedBook);
+            console.log("BOOK IN INDEX.JS SET TO: ", selectedBook);
           } else {
             console.error('Book not found');
           }
@@ -72,11 +73,11 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
     //       }
           
           
-    //       const book = storedBooks.find(book => String(book.objectID) === String(clickedId));
+    //       const selectedBook = storedBooks.find(selectedBook => String(selectedBook.objectID) === String(clickedId));
     
-    //       if (book) {
-    //         setBookDesc(book);
-    //         console.log("BOOK SET TO:", book);
+    //       if (selectedBook) {
+    //         setBookDesc(selectedBook);
+    //         console.log("BOOK SET TO:", selectedBook);
     //       } else {
     //         console.error('Book not found');
     //       }
@@ -89,13 +90,13 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
 
     
     // const handleArchive = (id) => {
-    //   //store archived book in localStorage
+    //   //store archived selectedBook in localStorage
     //   let archivedBooks = JSON.parse(localStorage.getItem('archivedBooks')) || [];
     //   //ensure archivedBooks is always an array even when returns empty/null
     //   if (!Array.isArray(archivedBooks)) {
     //     archivedBooks = [];
     //   }    
-    //   const isBookMarked = archivedBooks.some(book => book.objectID === objectID)
+    //   const isBookMarked = archivedBooks.some(selectedBook => selectedBook.objectID === objectID)
     //   if (!isBookMarked) {
     //     archivedBooks.push(story);
     //     localStorage.setItem('archivedBooks', JSON.stringify(archivedBooks));
@@ -105,8 +106,8 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
     //   }
     //   else {
     //     //do not use removeItem as it removes all items from the list
-    //     //use filter just to keep books with different objectIDs from the unbookmarked book
-    //     archivedBooks = archivedBooks.filter(book => book.objectID !== story.objectID);
+    //     //use filter just to keep books with different objectIDs from the unbookmarked selectedBook
+    //     archivedBooks = archivedBooks.filter(selectedBook => selectedBook.objectID !== story.objectID);
     //     localStorage.setItem('archivedBooks', JSON.stringify(archivedBooks));
     //     alert(story.title + " has been removed from bookmarks")
     //     console.log(archivedBooks)
@@ -123,10 +124,10 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
           //set archived books as data received from GET
           let archivedBooks = response.data;
 
-          const isBookMarked = archivedBooks.some(book => book.objectID === id)
+          const isBookMarked = archivedBooks.some(selectedBook => selectedBook.objectID === id)
 
           if (!isBookMarked) {
-            //if not archived, post and add book to archived books
+            //if not archived, post and add selectedBook to archived books
             axios.post(`http://localhost:7000/books/archive/${id}`, {
               objectID: story.objectID, 
               title: story.title, 
@@ -144,11 +145,11 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
               setUpdateTrigger(prev => !prev)
             })
             .catch(error => {
-              console.error('Error archiving the book:', error);
+              console.error('Error archiving the selectedBook:', error);
             });
           }
           else {
-            //if already bookmarked, delete and remove book from archived books
+            //if already bookmarked, delete and remove selectedBook from archived books
             axios.delete(`http://localhost:7000/books/archive/${id}`)
             .then(() => {
               alert(story.title + " has been removed from bookmarks");
@@ -156,7 +157,7 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
               setUpdateTrigger(prev => !prev); 
             })
             .catch(error => {
-              console.error('Error unarchiving the book:', error);
+              console.error('Error unarchiving the selectedBook:', error);
             })
           }
         })
@@ -165,8 +166,8 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
     /* layout of the UI when displaying the state from the store */
     return (
       <div className='homePageContainer' >
-        <div className="story">
-            <img src={image} className='bookImage' onClick={() => handleClick(objectID)}></img>
+        <div className="story" onClick={() => handleClick(objectID)}>
+            <img src={image} className='bookImage'></img>
             <br></br>
             <div className='homePageTitles'>
                 <span>
@@ -185,8 +186,8 @@ const Story = ({ story, onArchive, onReview, onRemoveArchive}) => {
             </ButtonInline>
         </div>
       </div>
-      <Outlet context={bookDesc}/>
-      {/* <Outlet context={book}/> */}
+      <Outlet context={{bookDesc, setBookDesc, selectedBook}}/>
+      {/* <Outlet context={selectedBook}/> */}
       </div>  
     );
   }

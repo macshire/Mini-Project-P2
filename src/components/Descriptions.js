@@ -1,7 +1,6 @@
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import "./Description.css";
 import "./Home.css";
-import "./Layout";
 import Review from "./Reviews/Review";
 import Rate from "./Reviews/StarRating";
 import Book from './Books/Book'; 
@@ -21,8 +20,9 @@ const Descriptions = (props) => {
   const [comments, setComments] = useState([]);
   const [books, setBooks] = useState([]);
   const [refresh, setRefresh]= useState(null)
-  const outletContext = useOutletContext();
-  const bookDesc = outletContext ? outletContext[0] : {}; 
+  const bookDesc = useOutletContext();
+  var selectedBook = useOutletContext();
+  // const bookDesc = outletContext ? outletContext[0] : {}; 
   // const book = outletContext ? outletContext[0] : {}; 
   const updateFromDelete = (data) => {
     axios.get('http://localhost:7000/books')
@@ -36,26 +36,26 @@ const Descriptions = (props) => {
 
   const pa = useParams();
 
-
   const [reviewedBooks, setReviewedBooks] = useState([]);
   
-  //every bookDesc change to book
-  
   useEffect(() => {
-    console.log("bookDesc = " + bookDesc);
+    console.log("bookDesc in desc.js is = " + bookDesc);
     if (!bookDesc || !bookDesc.objectID) {
       console.warn("bookDesc or bookDesc.objectID is not available");
-      return; // Prevent further execution
+      //return; // Prevent further execution
+    }
+    if (selectedBook) {
+      console.log("selectedBook = ", selectedBook);
     }
   
     axios.get('http://localhost:7000/books')
       .then(response => {
         const storedBooks = Array.isArray(response.data) ? response.data : [];
-        const book = storedBooks.find(book => book.objectID === bookDesc.objectID);
+        //const book = storedBooks.find(book => String(book.objectID) === String(bookDesc.objectID));
   
-        if (book) {
-          setReviewedBooks(book);
-          console.log("REVIEWEDBOOK SET TO:", book);
+        if (selectedBook) {
+          setReviewedBooks(selectedBook);
+          console.log("REVIEWEDBOOK SET TO:", selectedBook);
         } else {
           console.error("Book not found for the given objectID");
         }
