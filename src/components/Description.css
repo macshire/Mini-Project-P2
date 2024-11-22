@@ -151,7 +151,7 @@
   }
   
   .tester {
-    background-color: rgb(43, 75, 57);
+    background-color: rgb(27, 22, 20);
   }
   
   .review-container {
@@ -175,7 +175,7 @@
   font-family: "Bebas Neue", sans-serif;
   color: rgb(212, 175, 106);
   text-decoration: underline;
-  background-color: rgb(43, 75, 57);
+  background-color: rgb(27, 22, 20);
   transform: translateY(3vw);
   /* Centering styles */
   margin-left: auto;
@@ -193,3 +193,20 @@
   #reviewButton {
     background-color: #1f613c;
   }
+
+  .descReview-container {
+    display: flex; /* Enables Flexbox */
+    flex-direction: column; /* Ensures child items stack vertically */
+    justify-content: center; /* Centers items vertically */
+    align-items: center; /* Centers items horizontally */
+    width: 82vw; /* Keep this if needed */
+    height: 40vw; /* Full viewport height for vertical centering */
+    margin: 0 auto; /* Optional, horizontally centers the container itself */
+    box-sizing: border-box; /* Ensures padding doesn't affect dimensions */
+    background-color: rgb(27, 22, 20);
+  }
+
+  .descBG {
+    background-color: rgb(27, 22, 20);
+  }
+  

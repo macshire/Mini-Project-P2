@@ -33,7 +33,7 @@ const Descriptions = (props) => {
   })
   }
 
-  const mockReviews = [{ title: "ea sports", author: "maximilian macshire lionel" }]
+  const mockReviews = [{ review: "no reviews yet", stars: "0" }]
 
   // const [reviewItem, setReviewItem] = useState(null);
 
@@ -107,6 +107,7 @@ const Descriptions = (props) => {
                 <p>Description</p>
             </div>
        </div>
+       <div className='descBG'>
         <div className="tester">
           <Description reviews={Array.isArray(reviewedBooks) ? reviewedBooks : []} />
             {/* <Description reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/> */}
@@ -116,13 +117,16 @@ const Descriptions = (props) => {
         </div>
         <div>
           {/* component for layout of comments */}
-          <div>
-            <ProfileReview
-            profileReviews={Array.isArray(comments) ? comments : []}
-            refresh={updateFromDelete}
-            books = {books} />
+          <div className='descReview-container'>
+            <div>
+              <ProfileReview
+              profileReviews={Array.isArray(comments) ? comments : []}
+              refresh={updateFromDelete}
+              books={books} />
+            </div>
           </div>
         </div>
+       </div>
         {/* <span className="backgroundE">
          <Review reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
          </span> */}

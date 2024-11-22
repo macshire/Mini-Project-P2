@@ -67,19 +67,22 @@
 
 .ReviewDisplay{
   color: black;
-  font-size: 2vw;
-  width: 2vw;
+  font-size: 1.5vw;
+  width: 30vw;
+  margin-top: -1.5vw;
+  margin-left: 0.5vw;
 }
 
 .profreview-container {
-  width: 30vw;
-  height: 47vw;
+  width: 23vw;
+  height: 30vw;
   color: white;
   border: solid;
   border-color: rgb(114, 83, 54);
   border-width: 0.4vw;
   /* align-items: center; */
-  margin-left: 2vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
   /* margin-right: 50%; */
   margin-top: 3vw;
   display: inline-block;
@@ -88,7 +91,6 @@
   transition: all .1s ease-in-out;
   cursor: pointer;
   margin-bottom: 2vw;
-
 }
 /* .review-container:hover {
   transform: scale(1.1);

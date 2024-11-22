@@ -1,10 +1,9 @@
 .bookImage1 {
-  width: 20vw;
-  height: 30vw;
+  width: 15vw;
+  height: 20vw;
   align-items: center;
   border-radius: 4%;
   margin-left: 2vw;
-  margin-top: 1vw;
   transform: translate(10%,0%);
   position: block;
   z-index: 300;
