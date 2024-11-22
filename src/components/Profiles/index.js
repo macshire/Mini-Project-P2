@@ -71,24 +71,17 @@ const handleDelete = (id) =>{
         </Modal.Footer>
       </Modal>
       <div className='profreview-container' >
-
         <div className="story">
-            
             <button onClick={() =>  handleShow()}> delete</button>
-
-
             <div className='homePageTitles1' >
                 <span>
                 <a>{title}</a>
                 </span>
                 <br></br>
             </div>
-            
         {/* <div className='homePageText1'>
             <span>{author}</span>
             <br></br>
-
-
         </div> */}
         <div><p className="ReviewDisplay"> {review}</p></div>
         <img src={image} className='bookImage1' ></img>
@@ -96,10 +89,8 @@ const handleDelete = (id) =>{
         <div  className ="RankStar">
           <DisplayRate
           star = {stars}>
-            
           </DisplayRate>
         </div>
-
       </div>
       </div>  
       </>

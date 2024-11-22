@@ -33,9 +33,7 @@ const App = () => {
           <Route path="social" element={<Social />} />
           {/* need to make path for profile section, can include a delete button for reviews */}
           <Route path="profile" element={<Profile />} />
-          <Route path="/" element={<Book />}> {/* Example: Passing a book */}
-            <Route path="descriptions/:id" element={<Descriptions />} />
-          </Route>
+          <Route path="descriptions/:id" element={<Descriptions />} />
         </Route>
       </Routes>
     </BrowserRouter>

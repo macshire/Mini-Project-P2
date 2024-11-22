@@ -94,7 +94,7 @@
   .reviewImage {
   display: inline;
   position: relative;
-  width: 25vw;
+  width: 20vw;
   border-radius: 4%;
   margin-top: 0;
   }
@@ -118,11 +118,15 @@
   
   #p-title {
   font-weight: bold;
-  font-size: 4vw;
+  font-size: 3vw;
   transform: translateY(-3vw);
   }
 
   #p-author {
+    transform: translateY(-6vw);
+  }
+
+  #p-desc {
     transform: translateY(-6vw);
   }
   

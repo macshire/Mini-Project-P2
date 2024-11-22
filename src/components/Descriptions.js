@@ -22,6 +22,7 @@ const Descriptions = (props) => {
   const [refresh, setRefresh]= useState(null)
   const bookDesc = useOutletContext();
   var selectedBook = useOutletContext();
+  const { id } = useParams();
   // const bookDesc = outletContext ? outletContext[0] : {}; 
   // const book = outletContext ? outletContext[0] : {}; 
   const updateFromDelete = (data) => {
@@ -32,6 +33,8 @@ const Descriptions = (props) => {
   })
   }
 
+  const mockReviews = [{ title: "ea sports", author: "maximilian macshire lionel" }]
+
   // const [reviewItem, setReviewItem] = useState(null);
 
   const pa = useParams();
@@ -39,23 +42,26 @@ const Descriptions = (props) => {
   const [reviewedBooks, setReviewedBooks] = useState([]);
   
   useEffect(() => {
-    console.log("bookDesc in desc.js is = " + bookDesc);
-    if (!bookDesc || !bookDesc.objectID) {
-      console.warn("bookDesc or bookDesc.objectID is not available");
-      //return; // Prevent further execution
-    }
-    if (selectedBook) {
-      console.log("selectedBook = ", selectedBook);
-    }
+    // console.log("bookDesc in desc.js is = " + bookDesc);
+    // if (!bookDesc || !bookDesc.objectID) {
+    //   console.warn("bookDesc or bookDesc.objectID is not available");
+    //   //return; // Prevent further execution
+    // }
+    // if (selectedBook) {
+    //   console.log("selectedBook = ", selectedBook);
+    // }
   
     axios.get('http://localhost:7000/books')
       .then(response => {
+        console.log("params id = ", id)
         const storedBooks = Array.isArray(response.data) ? response.data : [];
-        //const book = storedBooks.find(book => String(book.objectID) === String(bookDesc.objectID));
+        console.log("storedBooks array = ", storedBooks)
+        console.log("Type of id:", typeof id, "Value of id:", id);
+        const book = storedBooks.find(book => book.objectID === parseInt(id, 10));
   
-        if (selectedBook) {
-          setReviewedBooks(selectedBook);
-          console.log("REVIEWEDBOOK SET TO:", selectedBook);
+        if (book) {
+          setReviewedBooks([book]);
+          console.log("REVIEWEDBOOK IN DESC.JS SET TO:", book);
         } else {
           console.error("Book not found for the given objectID");
         }
@@ -63,26 +69,29 @@ const Descriptions = (props) => {
       .catch(error => {
         console.error('There was an error fetching the books!', error);
       });
-  }, [bookDesc, pa.id, reviews.length]); // Including bookDesc as a dependency
+  }, [id, reviews.length]); // Including bookDesc as a dependency
   
   
   //getting and setting reviews based on bookID of review and id of prop
   useEffect(() => {
     axios.get('http://localhost:7000/reviews')
       .then(response => {
-        const comments = response.data;
-        // Guard condition for bookDesc
-        if (bookDesc && bookDesc.objectID) {
-          const filteredComments = comments.filter(review => review.bookID === bookDesc.objectID);
-          setComments(filteredComments);
-        } else {
-          console.warn("bookDesc is not defined or missing id");
+        const storedComments = response.data;
+        console.log("storedComments = ", storedComments)
+        const comment = storedComments.filter(comment => comment.bookID === parseInt(id, 10));
+        console.log("filteredComments = ", comment);
+        if (comment) {
+          setComments(comment);
+          console.log("setComments = ", comment)
+        }
+        else {
+          console.warn("no reviews match the book id")
         }
       })
       .catch(error => {
         console.error('There was an error fetching the reviews!', error);
       });
-  }, [bookDesc]);
+  }, [id]);
   
 
 
@@ -99,7 +108,7 @@ const Descriptions = (props) => {
             </div>
        </div>
         <div className="tester">
-          <Description reviews={Array.isArray(reviewedBooks) ? reviewedBooks : []} onReview={id => store.dispatch({ type: REVIEW_BOOK, id })} />
+          <Description reviews={Array.isArray(reviewedBooks) ? reviewedBooks : []} />
             {/* <Description reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/> */}
         </div>
         <div className="headerTextDesc">

@@ -110,7 +110,7 @@ const Description = ({ review, users}) => {
             <p id='p-author'>{author}</p>
           </div>
           {/* replace textarea with description of the book */}
-          <p id='p-author'>Description goes here blah blah blah</p>
+          <p id='p-desc'>Description goes here blah blah blah</p>
           {/* can convert rating into avrg star rating and put a button to go to about page for review*/}
           <div className = "rateStyle">
             <Rate 
