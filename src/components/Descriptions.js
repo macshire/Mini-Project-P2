@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Description from "./Description/Description";
 import ProfileReview from "./Profiles/ProfileReviews";
+import DescReviews from './Description/DescReview';
 import { useOutletContext } from 'react-router-dom';
 import Story from './Books';
 // import { withRouter } from "react-router-dom";
@@ -19,6 +20,7 @@ const Descriptions = (props) => {
   const { reviews } = props;
   const [comments, setComments] = useState([]);
   const [books, setBooks] = useState([]);
+  const [reviewUser, setReviewUser] = useState([]);
   const [refresh, setRefresh]= useState(null)
   const bookDesc = useOutletContext();
   var selectedBook = useOutletContext();
@@ -83,6 +85,16 @@ const Descriptions = (props) => {
         if (comment) {
           setComments(comment);
           console.log("setComments = ", comment)
+          //fetching and setting reviewUser for the specific review
+          axios.get('http://localhost:7000/users')
+          .then(response => {
+            const storedUsers = response.data;
+            const revUser = storedUsers.filter(revUser => revUser.id === comment.id)
+            if (revUser) {
+              setReviewUser(revUser);
+              console.log("setReviewUser", revUser)
+            }
+          })
         }
         else {
           console.warn("no reviews match the book id")
