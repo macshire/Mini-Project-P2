@@ -93,6 +93,11 @@ const Descriptions = (props) => {
               console.log("storedUsers = ", storedUsers, "and comments before filter = ", comment)
               //fitler for users matching ids in comments
               const revUser = storedUsers.filter(revUser => userIds.includes(revUser.id));
+              // return {
+              //   ...comment,
+              //   username: revUser?.username,
+              //   profilePic: revUser?.profilePic
+              // }
               console.log("revUser = ", revUser);
               if (revUser) {
                 //use revUser for the user parameter 

@@ -34,10 +34,11 @@ const {
     image,
 } = books.length ? books[bookID] : {}
 
+//might not be getting user data
 const {
     username,
     profilePic,
-} = reviewUser || {};
+} = reviewUser;
 
 const handleClick = (id) => {
   // navigate(`/about/${id}`);
@@ -55,9 +56,7 @@ const handleDelete = (id) =>{
 
     axios.delete(`http://localhost:7000/remove/${id}`)
     .then(() => {
-
     })
-
     .catch(error => {
       console.error('Error deleting the book:', error);
     })
@@ -69,7 +68,7 @@ const handleDelete = (id) =>{
       <div className='profreview-container' >
         <div className="story">
           <div className='homePageTitles1'>
-            <a>{username}</a>
+            <div>{username}</div>
           </div>
             <div className='homePageTitles1' >
                 <span>
