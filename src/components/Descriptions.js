@@ -85,15 +85,20 @@ const Descriptions = (props) => {
         if (comment) {
           setComments(comment);
           console.log("setComments = ", comment)
-          //fetching and setting reviewUser for the specific review
+          //extract user ids from comments
+          const userIds = comment.map(comment => comment.id)
           axios.get('http://localhost:7000/users')
-          .then(response => {
-            const storedUsers = response.data;
-            const revUser = storedUsers.filter(revUser => revUser.id === comment.id)
-            if (revUser) {
-              setReviewUser(revUser);
-              console.log("setReviewUser", revUser)
-            }
+            .then(response => {
+              const storedUsers = response.data;
+              console.log("storedUsers = ", storedUsers, "and comments before filter = ", comment)
+              //fitler for users matching ids in comments
+              const revUser = storedUsers.filter(revUser => userIds.includes(revUser.id));
+              console.log("revUser = ", revUser);
+              if (revUser) {
+                //use revUser for the user parameter 
+                setReviewUser(revUser);
+                console.log("setReviewUser", revUser)
+              }
           })
         }
         else {
@@ -135,6 +140,15 @@ const Descriptions = (props) => {
               profileReviews={Array.isArray(comments) ? comments : []}
               refresh={updateFromDelete}
               books={books} />
+            </div>
+          </div>
+          <div className='descReview-container'>
+            <div>
+              <DescReviews
+              descReviews={Array.isArray(comments) ? comments : []}
+              refresh={updateFromDelete}
+              books={books}
+              reviewUser={reviewUser} />
             </div>
           </div>
         </div>

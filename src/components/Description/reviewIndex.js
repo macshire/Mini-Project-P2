@@ -8,7 +8,7 @@ import {DisplayRate} from '../Reviews/StarRating';
 import axios from 'axios';
 import '../Profile.css'
 import Modal from 'react-bootstrap/Modal';
-const DescReview = ({ profile, refresh, books, reviewUser}) => {
+const DescReview = ({ descReviews, refresh, books, reviewUser}) => {
 
 const navigate = useNavigate();
 const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ const {
     bookID,
     created_at,
     id
-} = profile;
+} = descReviews;
 
 const {
     title,
@@ -68,19 +68,19 @@ const handleDelete = (id) =>{
       <>
       <div className='profreview-container' >
         <div className="story">
+          <div className='homePageTitles1'>
+            <a>{username}</a>
+          </div>
             <div className='homePageTitles1' >
                 <span>
                 <a>{username}</a>
-                <a>{created_at}</a>
+                <a>{review}</a>
                 </span>
                 <br></br>
             </div>
-        {/* <div className='homePageText1'>
-            <span>{author}</span>
             <br></br>
-        </div> */}
-        <div><p className="ReviewDisplay"> {review}</p></div>
-        <img src={image} className='bookImage1' ></img>
+        <div><p className="ReviewDisplay"> {created_at}</p></div>
+        <img src={profilePic} className='bookImage1' ></img>
         <br></br>
         <div  className ="RankStar">
           <DisplayRate

@@ -19,7 +19,7 @@ const Description = ({ review, users}) => {
       image,
       points,
       objectID,
-    } = review;
+    } = review || {};
 
     const [reviewText, setReviewText] = useState('');
     const { isLoggedIn, userId } = useOutletContext();
