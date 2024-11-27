@@ -20,7 +20,9 @@ const {
     reviewID,
     bookID,
     created_at,
-    id
+    id,
+    // username,
+    // profilePic,
 } = descReviews;
 
 const {
@@ -40,11 +42,8 @@ const {
     profilePic,
 } = reviewUser;
 
-const handleClick = (id) => {
-  // navigate(`/about/${id}`);
-  // onReview(id);
-  console.log("profile hi " + {reviewID});
-}
+//console.log("reviewUser in reviewIndex = ", reviewUser);
+
 const [updateTrigger, setUpdateTrigger] = useState(false);
 
 const handleDelete = (id) =>{
@@ -72,7 +71,6 @@ const handleDelete = (id) =>{
           </div>
             <div className='homePageTitles1' >
                 <span>
-                <a>{username}</a>
                 <a>{review}</a>
                 </span>
                 <br></br>

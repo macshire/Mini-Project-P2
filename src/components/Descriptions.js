@@ -101,7 +101,7 @@ const Descriptions = (props) => {
               console.log("revUser = ", revUser);
               if (revUser) {
                 //use revUser for the user parameter 
-                setReviewUser(revUser);
+                setReviewUser([revUser]);
                 console.log("setReviewUser", revUser)
               }
           })
