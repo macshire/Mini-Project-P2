@@ -21,8 +21,8 @@ const {
     bookID,
     created_at,
     id,
-    // username,
-    // profilePic,
+    username,
+    profilePic,
 } = descReviews;
 
 const {
@@ -37,12 +37,12 @@ const {
 } = books.length ? books[bookID] : {}
 
 //might not be getting user data
-const {
-    username,
-    profilePic,
-} = reviewUser;
+// const {
+//     username,
+//     profilePic,
+// } = reviewUser;
 
-//console.log("reviewUser in reviewIndex = ", reviewUser);
+console.log("descReviews in reviewIndex = ", descReviews);
 
 const [updateTrigger, setUpdateTrigger] = useState(false);
 
@@ -76,15 +76,15 @@ const handleDelete = (id) =>{
                 <br></br>
             </div>
             <br></br>
-        <div><p className="ReviewDisplay"> {created_at}</p></div>
-        <img src={profilePic} className='bookImage1' ></img>
-        <br></br>
-        <div  className ="RankStar">
-          <DisplayRate
-          star = {stars}>
-          </DisplayRate>
+          <div><p className="ReviewDisplay"> {created_at}</p></div>
+          <img src={profilePic} className='bookImage1' ></img>
+          <br></br>
+          <div  className ="RankStar">
+            <DisplayRate
+            star = {stars}>
+            </DisplayRate>
+          </div>
         </div>
-      </div>
       </div>  
       </>
     );

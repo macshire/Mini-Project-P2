@@ -78,42 +78,40 @@ const Descriptions = (props) => {
   useEffect(() => {
     axios.get('http://localhost:7000/reviews')
       .then(response => {
-        const storedComments = response.data;
-        console.log("storedComments = ", storedComments)
-        const comment = storedComments.filter(comment => comment.bookID === parseInt(id, 10));
-        console.log("filteredComments = ", comment);
-        if (comment) {
-          setComments(comment);
-          console.log("setComments = ", comment)
-          //extract user ids from comments
-          const userIds = comment.map(comment => comment.id)
+        const storedComments = response.data.filter(comment => comment.bookID === parseInt(id, 10));
+        setComments(storedComments);
+  
+        if (storedComments.length) {
+          const userIds = storedComments.map(comment => comment.id);
           axios.get('http://localhost:7000/users')
-            .then(response => {
-              const storedUsers = response.data;
-              console.log("storedUsers = ", storedUsers, "and comments before filter = ", comment)
-              //fitler for users matching ids in comments
-              const revUser = storedUsers.filter(revUser => userIds.includes(revUser.id));
-              // return {
-              //   ...comment,
-              //   username: revUser?.username,
-              //   profilePic: revUser?.profilePic
-              // }
-              console.log("revUser = ", revUser);
-              if (revUser) {
-                //use revUser for the user parameter 
-                setReviewUser([revUser]);
-                console.log("setReviewUser", revUser)
-              }
-          })
-        }
-        else {
-          console.warn("no reviews match the book id")
+            .then(userResponse => {
+              const storedUsers = userResponse.data;
+              console.log("storedComments:", storedComments);
+              console.log("userIds:", userIds);
+              console.log("storedUsers:", storedUsers);
+
+              // Enrich comments with user data
+              const enrichedComments = storedComments.map(comment => {
+                const user = storedUsers.find(user => user.id === parseInt(comment.id, 10)); // Match user.id to comment.id
+                console.log("found users for reviews = ", user)
+                return {
+                  ...comment,
+                  username: user.username ,
+                  profilePic: user.profilePic ,
+                };
+              });
+              setComments(enrichedComments); // Update comments with enriched data
+            })
+            .catch(error => {
+              console.error("Error fetching users!", error);
+            });
         }
       })
       .catch(error => {
         console.error('There was an error fetching the reviews!', error);
       });
   }, [id]);
+  
   
 
 
@@ -139,21 +137,20 @@ const Descriptions = (props) => {
         </div>
         <div>
           {/* component for layout of comments */}
-          <div className='descReview-container'>
+          {/* <div className='descReview-container'>
             <div>
               <ProfileReview
               profileReviews={Array.isArray(comments) ? comments : []}
               refresh={updateFromDelete}
               books={books} />
             </div>
-          </div>
+          </div> */}
           <div className='descReview-container'>
             <div>
               <DescReviews
-              descReviews={Array.isArray(comments) ? comments : []}
+              descReviews={comments}
               refresh={updateFromDelete}
-              books={books}
-              reviewUser={reviewUser} />
+              books={books} />
             </div>
           </div>
         </div>
