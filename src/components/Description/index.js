@@ -97,6 +97,19 @@ const Description = ({ review, users}) => {
       setIsReviewCreated(false);
       console.log("why");
     }, [isReviewCreated]); // Empty dependency array to run on mount
+
+    const fetchBookDetails = async (volumeID) => {
+      try {
+        const response = await axios.get(
+          `https://www.googleapis.com/books/v1/volumes/${volumeID}`,
+          { params: { key: 'my key' } }
+        );
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching book details:', error);
+        return null;
+      }
+    };
     
     return (
       <div className='review-container'>
@@ -119,6 +132,9 @@ const Description = ({ review, users}) => {
             >  
             </Rate>
           </div>
+          <button id='readBookButton' onClick={fetchBookDetails}>
+              Read
+            </button>
           {/* convert to button to go to review page */}
           <button id="reviewButton">Review</button>
           <div>

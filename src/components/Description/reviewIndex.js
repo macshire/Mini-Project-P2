@@ -61,6 +61,21 @@ const handleDelete = (id) =>{
     })
 
 };
+
+const fetchBookDetails = async (volumeID) => {
+  try {
+    const response = await axios.get(
+      `https://www.googleapis.com/books/v1/volumes/${volumeID}`,
+      { params: { key: 'AIzaSyBR_x56CequuSLWxoffR27gAtS-zZeriGI' } }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching book details:', error);
+    return null;
+  }
+};
+
+
 /* layout of the UI when displaying the state from the store */
     return (
       <>
@@ -76,10 +91,15 @@ const handleDelete = (id) =>{
                 <br></br>
             </div>
             <br></br>
+            <br></br>
           <div><p className="ReviewDisplay"> {created_at}</p></div>
           <img src={profilePic} className='bookImage1' ></img>
           <br></br>
           <div  className ="RankStar">
+            {/* call google books api when click read button */}
+            <button id='readBookButton' onClick={fetchBookDetails}>
+              Read
+            </button>
             <DisplayRate
             star = {stars}>
             </DisplayRate>
