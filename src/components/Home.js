@@ -17,6 +17,7 @@ import { SEARCH_BOOK } from "../constants/actionTypes";
 import booksData from "../data/booksData";
 import axios from "axios";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
+import { response } from "express";
 
 
 const Home = ({ filteredBooks }) => {
@@ -195,6 +196,16 @@ const Home = ({ filteredBooks }) => {
         bookWrapper.style.transform = `translateX(-${shiftAmount}%)`;
       }
   };
+
+  useEffect(() => {
+    axios.get('https://www.googleapis.com/books/v1/volumes/{volumeID}?key=AIzaSyBR_x56CequuSLWxoffR27gAtS-zZeriGI')
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.error("Google api shiii", error);
+    });
+  }, []);
 
 
 
