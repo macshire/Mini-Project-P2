@@ -21,9 +21,10 @@
     "firebase": "^10.14.1",
     "install": "^0.13.0",
     "next": "^14.2.15",
-    "node-polyfill-webpack-plugin": "^4.0.0",
     "npm": "^10.8.3",
+    "path": "^0.12.7",
     "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "querystring-es3": "^0.2.1",
     "react": "^18.3.1",
@@ -33,9 +34,9 @@
     "react-router-dom": "^6.26.2",
     "react-scripts": "5.0.1",
     "redux": "^5.0.1",
-    "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
     "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
@@ -65,6 +66,9 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
-    "react-app-rewired": "^2.2.1"
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "react-app-rewired": "^2.2.1",
+    "webpack": "^5.97.0",
+    "webpack-cli": "^5.1.4"
   }
 }
