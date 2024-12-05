@@ -4,6 +4,7 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 module.exports = function override(config) {
   // Add polyfills for Node modules in the browser
   config.resolve.fallback = {
+    ...config.resolve.alias,
     ...config.resolve.fallback, // Retain existing fallbacks
     fs: false, // File system is not supported in browsers
     net: false, // Networking modules are not supported
@@ -13,6 +14,7 @@ module.exports = function override(config) {
     crypto: require.resolve("crypto-browserify"),
     stream: require.resolve("stream-browserify"),
     http: require.resolve("stream-http"),
+    //need to fix process/browser issue
     process: require.resolve("process/browser"),
   };
 
