@@ -6,6 +6,7 @@ module.exports = function override(config) {
   config.resolve.fallback = {
     ...config.resolve.alias,
     ...config.resolve.fallback, // Retain existing fallbacks
+    'async_hooks': false,
     fs: false, // File system is not supported in browsers
     net: false, // Networking modules are not supported
     zlib: require.resolve("browserify-zlib"),
@@ -15,7 +16,7 @@ module.exports = function override(config) {
     stream: require.resolve("stream-browserify"),
     http: require.resolve("stream-http"),
     //need to fix process/browser issue
-    process: require.resolve("process/browser"),
+    process: require.resolve("process/browser.js"),
   };
 
   // Add plugins for polyfills
