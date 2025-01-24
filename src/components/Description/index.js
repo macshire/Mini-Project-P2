@@ -10,6 +10,8 @@ import axios from 'axios';
 import '../Layout';
 import StarRating from '.././Reviews/StarRating';
 import { object } from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+
 const Description = ({ review, users}) => {
     const {
       title,
@@ -97,6 +99,13 @@ const Description = ({ review, users}) => {
       setIsReviewCreated(false);
       console.log("why");
     }, [isReviewCreated]); // Empty dependency array to run on mount
+
+    const navigate = useNavigate();
+
+    const handleReviewClick = () => {
+        navigate(`/review/${objectID}`); // Navigate to the review page with the book's ID
+    };
+
     
     return (
       <div className='review-container'>
@@ -120,7 +129,7 @@ const Description = ({ review, users}) => {
             </Rate>
           </div>
           {/* convert to button to go to review page */}
-          <button id="reviewButton">Review</button>
+          <button id="reviewButton" onClick={handleReviewClick}>Review</button>
           <div>
             {/* insert section for comments on that specific book */}
           </div>

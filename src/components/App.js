@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import booksData from "../data/booksData";
 import Social from "./Social";
 import Descriptions from "./Descriptions";
+import ReviewPage from "./ReviewPage";
 import Story from "./Books";
 import Book from "./Books/Book";
 
@@ -34,6 +35,7 @@ const App = () => {
           {/* need to make path for profile section, can include a delete button for reviews */}
           <Route path="profile" element={<Profile />} />
           <Route path="descriptions/:id" element={<Descriptions />} />
+          <Route path="/review/:id" element={<ReviewPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
