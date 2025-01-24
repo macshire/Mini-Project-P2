@@ -444,23 +444,23 @@ useEffect(() => {
                 <Link to="/bookmark">BookMark</Link>
                 <Link to="/social">Social</Link>
                 <div className="navButtonContainer">
-                {/* conditional rendering based on if logged in or not, and whose account is logged in ((condition) true : false)*/}
-                {isLoggedIn? (
+                  {/* conditional rendering based on if logged in or not, and whose account is logged in ((condition) true : false)*/}
+                  {isLoggedIn? (
+                    <div>
+                      <span className="profileName">{user.username}</span>
+                      <Link to="/profile" state={{user: user}}id="linkPFP">
+                        <img className="pfpPlaceHolder" 
+                        src={user.profilePic !== null? user.profilePic : "https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg"}
+                        ></img>
+                      </Link>
+                    </div>
+                  ) : 
+                  (
                   <>
-                  <span className="profileName">{user.username}</span>
-                    <Link to="/profile" state={{user: user}}id="linkPFP">
-                      <img className="pfpPlaceHolder" 
-                      src={user.profilePic !== null? user.profilePic : "https://www.dovercourt.org/wp-content/uploads/2019/11/610-6104451_image-placeholder-png-user-profile-placeholder-image-png-286x300.jpg"}
-                      ></img>
-                    </Link>
+                    <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); handleRegisterClicked();}}>Register</button>
+                    <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); handleLogInClicked();}}>Log In</button>
                   </>
-                ) : 
-                (
-                <>
-                  <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); handleRegisterClicked();}}>Register</button>
-                  <button className="navButtons" onClick={() => { handleShow(); fetchUsers(); handleLogInClicked();}}>Log In</button>
-                </>
-                )}
+                  )}
                 </div>
               </div>
             </li>

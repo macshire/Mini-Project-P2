@@ -70,10 +70,13 @@ const BookMark = ({ stories }) => {
             <p>View your favourite stories here</p>
           </div>
         </div>
+        <div className="homepageBody">
         <div className="headerBorder">
         <span className="BMheaderText">{archivedBooks.length} favourited</span>
         <button id="clearButton" onClick={clearBookmarks}>CLEAR ALL BOOKMARKS</button>
         </div>
+        <br></br>
+        <br></br>
         <span className='flex-container'>
         {archivedBooks.map(book => (
           <Story
@@ -81,8 +84,8 @@ const BookMark = ({ stories }) => {
             story={book}
           />
         ))}
-        
         </span>
+        </div>
         </div>
         {/* temp */}
         {/* <div>

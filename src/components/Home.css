@@ -133,7 +133,7 @@ li a:is(:link, :active, :visited) {
   background-blend-mode: multiply;
   transform: translateX(-0.5vw);
   font-family: "Bebas Neue", sans-serif;
-  transform: translateX(32vw);
+  /* transform: translateX(32vw); */
 }
 
 /* changes color of box if hovering */
@@ -198,6 +198,7 @@ a:is(:link, :active, :visited){
   display: flex;
   align-items: center;
   overflow: hidden;
+  justify-content: center;
 }
 
 #avatar3 {
@@ -313,6 +314,16 @@ body {
   display: inline-block;
 } 
 
+.headerText1 {
+  font-size: 8vw;
+  margin-top: 0.5vw;
+  font-family: "Bebas Neue", sans-serif;
+  margin-left: -8vw;
+  color:  rgb(231, 222, 204);
+  display: inline-block;
+  transform: translateX(10vw);
+} 
+
 .header2Text {
   font-size: 5vw;
   font-family: "Bebas Neue", sans-serif;
@@ -386,7 +397,9 @@ body {
 }
 
 .navButtonContainer {
-  transform: translateX(42vw);
+  /* transform: translateX(42vw); */
+  /* placeholder BG color */
+  /* background-color: rgb(229, 182, 236); */
 }
 
 .navButtons {
@@ -408,7 +421,7 @@ body {
   width: 14vw;
   height: 3vw;
   font-size: 1.05vw;
-  transform: translateX(45vw) translateY(-2vw);
+  transform: translateX(25vw) translateY(-2.5vw);
   border-radius: 4px;
 }
 
@@ -549,6 +562,7 @@ body {
   justify-content: center;    
   /*center the image vertically */
   align-items: center;        
+  z-index: 1;
 }
 
 .linkPFP {

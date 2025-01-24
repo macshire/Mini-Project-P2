@@ -168,8 +168,9 @@ const Social = () => {
             <p>Discuss with fellow book worms</p>
           </div>
         </div>
+        <div className="homepageBody">
         <div className="headerBorder">
-        <div className="dropDownContainer">
+        {/* <div className="dropDownContainer">
             <InputLabel id="dropDownLabel">Filter</InputLabel>
             <Select 
               labelId="dropDownLabel"
@@ -185,19 +186,20 @@ const Social = () => {
               <MenuItem value={'Romance'}>Romance</MenuItem>
               <MenuItem value={'Literature'}>Literature</MenuItem>
             </Select>
-            </div>
-        <span className="headerText">FRIENDS</span>
-        <input
+          </div> */}
+        <span className="headerText1">FRIENDS</span>
+        {/* <input
             type="text"
             id='searchBar'
             placeholder="Search for their name!"
             value={searchTerm}
             onChange={handleSearchChange}
-          />
+          /> */}
         </div>
         <div>
           {/* conditionally renders the message */}
           {show && <div id="noSearch">No search results...</div>}
+      </div>
       </div>
       <div className="homepageBody">
         <span className="header2Text">
