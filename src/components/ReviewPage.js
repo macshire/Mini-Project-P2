@@ -33,25 +33,30 @@ const ReviewPage = () => {
 
   return (
     <div className="review-page">
-      {bookDetails && (
-        <>
-          <div className="book-info">
-            <h1>{bookDetails.title}</h1>
-            <h3>by {bookDetails.author}</h3>
-            <img src={bookDetails.image} alt={bookDetails.title} className="book-image"/>
-            <p>{bookDetails.description}</p>
-          </div>
-
-          <div className="review-section">
-            <h2>User Reviews</h2>
-            {reviews.length > 0 ? (
-              <Review reviews={reviews} />
-            ) : (
-              <p>No reviews yet. Be the first to review this book!</p>
-            )}
-          </div>
-        </>
-      )}
+      <>
+     <head>
+       <link rel="stylesheet" type="text/css" href="App.css"/>
+       <script defer src='activePage.js'></script>
+     </head>
+     <div id="about">
+        <div id="titleBackground">
+            <div id="titleName">
+                <p>Description</p>
+            </div>
+       </div>
+       <div className='descBG'>
+        <div className="tester">
+        {reviews.map((review, index) => (
+            <Review key={index} review={review} />
+        ))}
+            {/* <Description reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/> */}
+        </div>
+       </div>
+        {/* <span className="backgroundE">
+         <Review reviews={reviewedBooks ? [reviewedBooks] : []} onReview ={id => store.dispatch({type: REVIEW_BOOK, id}) }/>
+         </span> */}
+     </div>
+     </>
     </div>
   );
 };
